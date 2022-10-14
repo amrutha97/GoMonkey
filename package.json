@@ -1,0 +1,23 @@
+{
+  "name": "gomonkey",
+  "version": "1.0.0",
+  "description": "\"Simple VR app\"",
+  "main": "dice.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "budo --live --verbose --port 3000 --open --ssl, -S"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amrutha97/GoMonkey.git"
+  },
+  "author": "amrutha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amrutha97/GoMonkey/issues"
+  },
+  "homepage": "https://github.com/amrutha97/GoMonkey#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}

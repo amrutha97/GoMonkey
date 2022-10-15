@@ -9,12 +9,32 @@
 
     <a-scene>
         <a-assets>
-            <a-asset-item id="monkey_obj" src="models/monkey.obj"></a-asset-item>
-            <a-asset-item id="monkey_mtl" src="models/monkey.mtl"></a-asset-item>
+            <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
+            <a-asset-item id="fruit" src="models/strawberry.glb"></a-asset-item>
+            <a-mixin id="small" scale="0.2 0.2 0.2"></a-mixin>
+            <a-mixin id="mini" scale="0.005 0.005 0.005"></a-mixin>
         </a-assets>
     <a-entity 
         obj-model="obj: #monkey_obj; mtl: #monkey_mtl" 
     >
+    </a-entity>
+    <a-entity id="parent" position="0 1 5" rotation="0 45 0">
+        <a-entity 
+            mixin="giant" 
+            id="monkey"   
+            gltf-model="#monkey"   
+            position="0 0 0" 
+            rotation="360 140 0">
+        </a-entity>
+    </a-entity>
+    <a-entity id="parent" position="0 0 0" rotation="0 45 90">    
+        <a-entity 
+            mixin="mini"
+            id="fruit"   
+            gltf-model="#fruit"   
+            position="15 5 10"  
+            rotation=" 60 180 90">
+        </a-entity>
     </a-entity>
     <a-plane 
         color="#006600" 

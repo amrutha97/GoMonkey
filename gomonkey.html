@@ -7,39 +7,60 @@
   </head>
   <body>
 
-    <a-scene>
-        <a-assets>
-            <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
-            <a-asset-item id="fruit" src="models/strawberry.glb"></a-asset-item>
-            <a-mixin id="small" scale="0.2 0.2 0.2"></a-mixin>
-            <a-mixin id="mini" scale="0.005 0.005 0.005"></a-mixin>
-        </a-assets>
+<a-scene overlay-visibility>
+    <a-assets>
+        <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
+        <a-asset-item id="fruit" src="models/strawberry.glb"></a-asset-item>
+        <a-mixin id="small" scale="0.5 0.5 0.5"></a-mixin>
+        <a-mixin id="mini" scale="0.005 0.005 0.005"></a-mixin>
+    </a-assets>
+ 
+    <!-- <a-scene fog="type: exponential; density: 0.15; color: #ffffff;"> -->
+    <!-- <a-animation attribute="fog.color"
+            dur="7000"
+            from="#fff"
+            to="#10454A"
+            repeat="indefinite"
+            direction="alternate">
+    </a-animation> -->
+    <!-- <a-light type="ambient" intensity=".1" color="#FF54CA"></a-light> -->
+
+
+    <!-- CAMERA -->
+    <!-- <a-camera position="90 0 0"></a-camera> -->
+
+    <!-- MONKEY -->
     <a-entity 
-        obj-model="obj: #monkey_obj; mtl: #monkey_mtl" 
+        id="parent" 
+        position="0 0 0" 
+        rotation="0 0 90"
     >
-    </a-entity>
-    <!-- <a-entity camera look-controls position="0 1.6 0"></a-entity>
-    <a-entity id="rig" position="25 10 0">
-        <a-entity id="camera" camera look-controls></a-entity>
-    </a-entity> -->
-    <a-entity id="parent" position="0 0 0" rotation="0 45 0">
         <a-entity 
             mixin="small" 
             id="monkey"   
             gltf-model="#monkey"   
-            position="0 0 0" 
-            rotation="360 140 0">
+            position="0 5 0" 
+            rotation="90 100 10">
         </a-entity>
     </a-entity>
-    <a-entity id="parent" position="0 0 0" rotation="0 45 90">    
+
+    <!-- FRUIT -->
+    <a-entity 
+        id="parent" 
+        position="0 0 0" 
+        rotation="0 45 90"
+    >    
         <a-entity 
             mixin="mini"
             id="fruit"   
             gltf-model="#fruit"   
-            position="15 5 10"  
+            position="5 5 5"  
             rotation=" 60 180 90">
         </a-entity>
     </a-entity>
+    <a-entity camera look-controls position="0 1.6 0"></a-entity>
+
+    <!-- PLANE -->
     <a-plane 
         color="#006600" 
         rotation="-90 0 0" 
@@ -48,6 +69,19 @@
         repeat="10 10">
     </a-plane>
     <a-sky color="#6796f5"></a-sky>
-    </a-scene>
-  </body>
+
+    <!-- SCRIPT --> 
+    <script>
+        var el = document.querySelector('#monkey');
+
+    //   AFRAME.registerComponent('overlay-visibility', {
+    //     init: function () {
+    //       if (!this.el.isMobile) {
+    //         document.querySelector('#about').style.display = 'block';
+    //       }
+    //     }
+    //   });
+    </script>
+</a-scene>
+</body>
 </html>

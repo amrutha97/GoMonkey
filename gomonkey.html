@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <title>Go Monkey</title>
+        <meta name="description" content="Go Monkey">
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  </head>
+  <body>
+
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="monkey_obj" src="models/monkey.obj"></a-asset-item>
+            <a-asset-item id="monkey_mtl" src="models/monkey.mtl"></a-asset-item>
+        </a-assets>
+    <a-entity 
+        obj-model="obj: #monkey_obj; mtl: #monkey_mtl" 
+    >
+    </a-entity>
+    <a-plane 
+        color="#006600" 
+        rotation="-90 0 0" 
+        width="30" 
+        height="30"
+        repeat="10 10">
+    </a-plane>
+    <a-sky color="#6796f5"></a-sky>
+    </a-scene>
+  </body>
+</html>

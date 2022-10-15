@@ -18,9 +18,13 @@
         obj-model="obj: #monkey_obj; mtl: #monkey_mtl" 
     >
     </a-entity>
-    <a-entity id="parent" position="0 1 5" rotation="0 45 0">
+    <!-- <a-entity camera look-controls position="0 1.6 0"></a-entity>
+    <a-entity id="rig" position="25 10 0">
+        <a-entity id="camera" camera look-controls></a-entity>
+    </a-entity> -->
+    <a-entity id="parent" position="0 0 0" rotation="0 45 0">
         <a-entity 
-            mixin="giant" 
+            mixin="small" 
             id="monkey"   
             gltf-model="#monkey"   
             position="0 0 0" 

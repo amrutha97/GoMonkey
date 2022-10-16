@@ -104,7 +104,7 @@ AFRAME.registerComponent('timer', {
          
     },
     play: function () {
-      console.log("play called");
+      // console.log("play called");
      if(this.paused)
       {
       this.TargetTime = new Date(new Date().getTime() + this.totalTimeRemaining); //update 
@@ -152,15 +152,15 @@ AFRAME.registerComponent('timer', {
         
         this.minutea = parseInt(timeRemaining / 60);
         timeRemaining = (timeRemaining % 60);
-        console.log("timeRemaining "+ timeRemaining);
+        // console.log("timeRemaining "+ timeRemaining);
        
         this.seconda = parseInt(timeRemaining);
-        console.log("days :"+days+" hours :"+this.houra+" minutes :"+this.minutea+" seconds :"+this.seconda);
+        // console.log("days :"+days+" hours :"+this.houra+" minutes :"+this.minutea+" seconds :"+this.seconda);
       } 
       
     },
     remove: function () {
-       console.log("removing timer"); //remove events if any
+      //  console.log("removing timer"); //remove events if any
   
   
     },
@@ -171,10 +171,10 @@ AFRAME.registerComponent('timer', {
       // If `oldData` is empty, then this means we're in the initialization process.
       // No need to update.
     if (Object.keys(oldData).length === 0) { return; }
-      console.log("update "+ data.DigitsColor);
+      // console.log("update "+ data.DigitsColor);
       // Material-related properties changed. Update the material.
       if (data.DigitsColor !== oldData.DigitsColor) {
-        console.log(" update "+ seconds.children[1].isObject3D+" "+ data.DigitsColor.toString(16).slice(-6) );
+        // console.log(" update "+ seconds.children[1].isObject3D+" "+ data.DigitsColor.toString(16).slice(-6) );
         //we are slicing color as the returned color is of the form "#000000" and we require only the digits.
         var col= "0x"+data.DigitsColor.toString(16).slice(-6);
         for(var i=0;i<14;i++) //updating the color of all the children of entity

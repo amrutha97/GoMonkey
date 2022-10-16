@@ -76,11 +76,10 @@
         AFRAME.registerComponent('start-game',{
         init: function () {
             // let sceneEl = document.querySelector('a-scene');
-            let handright = document.getElementById('#handright')
-            handright.addEventListener('thumbsticktouchstart', this.logThumbstick);
+            var label = document.getElementById('#label');
+            label.addEventListener('abuttondown', this.logThumbstick);
         },
         logThumbstick: function (evt) {
-            var label = document.getElementById('#label');
             label.setAttribute('text',"value: movement detected!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
         }
         });

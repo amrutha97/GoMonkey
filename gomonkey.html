@@ -70,18 +70,12 @@
 
         AFRAME.registerComponent('start-game',{
         init: function () {
-            this.el.addEventListener('thumbsticktouchstart', this.logThumbstick);
+            let sceneEl = document.querySelector('a-scene');
+            sceneEl.addEventListener('thumbsticktouchstart', this.logThumbstick);
         },
         logThumbstick: function (evt) {
             var label = document.getElementById('#label');
-            label.setAttribute('text',"value: movement detected...; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
-
-            // if (evt.detail.y > 0.95) { console.log("DOWN");
-        
-            // }
-            // if (evt.detail.y < -0.95) { console.log("UP"); }
-            // if (evt.detail.x < -0.95) { console.log("LEFT"); }
-            // if (evt.detail.x > 0.95) { console.log("RIGHT"); }
+            label.setAttribute('text',"value: movement detected!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
         }
         });
 

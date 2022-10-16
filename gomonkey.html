@@ -91,15 +91,29 @@
     <script>
 
         AFRAME.registerComponent('thumbstick-logging',{
-        init: function () {
-            this.el.addEventListener('thumbstickmoved', this.logThumbstick);
-        },
-        logThumbstick: function (evt) {
-            if (evt.detail.y > 0.95) { console.log("DOWN"); }
-            if (evt.detail.y < -0.95) { console.log("UP"); }
-            if (evt.detail.x < -0.95) { console.log("LEFT"); }
-            if (evt.detail.x > 0.95) { console.log("RIGHT"); }
-        }
+            init: function () {
+                this.el.addEventListener('thumbstickmoved', this.logThumbstick);
+            },
+            logThumbstick: function (evt) {
+                let monkey = document.getElementById('#monkey');
+
+                if (evt.detail.y > 0.95) { 
+                    console.log("DOWN"); 
+                    monkey.setAttribute('position', '-3 0 0')
+                }
+                if (evt.detail.y < -0.95) { 
+                    console.log("UP"); }
+                    monkey.setAttribute('position', '0 3 0')
+
+                if (evt.detail.x < -0.95) { 
+                    console.log("LEFT"); 
+                    monkey.setAttribute('position', '0 0 3')
+                }
+                if (evt.detail.x > 0.95) { 
+                    console.log("RIGHT"); 
+                    monkey.setAttribute('position', '0 0 -3')
+                }
+            }
         });
 
         // <!-- FRUIT -->

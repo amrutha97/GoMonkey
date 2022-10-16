@@ -63,15 +63,16 @@
     <a-entity random-fruit></a-entity>
 
     <!-- Meta Quest 2 - Controllers -->
-    <a-entity oculus-touch-controls="hand: left; color: #cc9966; handModelStyle: toon;" id="handleft" start-game></a-entity>
-    <a-entity oculus-touch-controls="hand: right; color: #cc9966; handModelStyle: toon;" id"handright" start-game></a-entity>
+    <!-- <a-entity oculus-touch-controls="hand: left; color: #cc9966; handModelStyle: toon;" id="handleft" start-game></a-entity> -->
+    <a-entity oculus-touch-controls="hand: right; color: #cc9966; handModelStyle: toon;" id="handright" start-game></a-entity>
 
     <script>
 
         AFRAME.registerComponent('start-game',{
         init: function () {
-            let sceneEl = document.querySelector('a-scene');
-            sceneEl.addEventListener('thumbsticktouchstart', this.logThumbstick);
+            // let sceneEl = document.querySelector('a-scene');
+            let handright = document.getElementById('#handright')
+            handright.addEventListener('thumbsticktouchstart', this.logThumbstick);
         },
         logThumbstick: function (evt) {
             var label = document.getElementById('#label');

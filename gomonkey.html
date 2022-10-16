@@ -26,7 +26,7 @@
         <!-- Mixins -->
         <a-mixin id="small" scale="0.2 0.2 0.2"></a-mixin>
         <a-mixin id="dynamic"
-        hoverable grabbable stretchable draggable dropppable dynamic-body
+        hoverable grabbable stretchable draggable dropppable
         ></a-mixin>
     </a-assets>
 
@@ -120,13 +120,13 @@
                     }
 
                     fruit[i].setAttribute('mixin',"dynamic");
-                    fruit[i].addEventListener('collide', 
-                        function (evt) {
-                            let label = document.getElementById('#label');
-                            label.setAttribute('text',"value: " + "hi" + "; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
-                            // monkey.setAttribute('position', 1 + ' ' + 0 + ' ' + 0);
-                        }
-                    ); 
+                    // fruit[i].addEventListener('collide', 
+                    //     function (evt) {
+                    //         let label = document.getElementById('#label');
+                    //         label.setAttribute('text',"value: " + "hi" + "; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
+                    //         // monkey.setAttribute('position', 1 + ' ' + 0 + ' ' + 0);
+                    //     }
+                    // ); 
 
                         // Random fruit rotation                    
                         x_rot = Math.random() * 360;

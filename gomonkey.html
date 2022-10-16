@@ -52,25 +52,25 @@
     <a-camera cursor="rayOrigin: mouse"></a-camera>
    
     <!-- TIMER -->
-    <a-entity 
+    <!-- <a-entity 
         id="timer" 
         timer=" timerTime:5; DigitsColor:red"
         position="1 2 0"
-    >
+    > -->
     </a-entity>
 
     <!-- FRUIT -->
     <a-entity random-fruit></a-entity>
 
     <!-- Meta Quest 2 - Controllers -->
-    <a-entity hand-controls="hand: left; color: #cc9966; handModelStyle: toon;" id="handleft" thumbstick-logging></a-entity>
-    <a-entity hand-controls="hand: right; color: #cc9966; handModelStyle: toon;" id"handright" thumbstick-logging></a-entity>
+    <a-entity oculus-touch-controls="hand: left; color: #cc9966; handModelStyle: toon;" id="handleft" start-game></a-entity>
+    <a-entity oculus-touch-controls="hand: right; color: #cc9966; handModelStyle: toon;" id"handright" start-game></a-entity>
 
     <script>
 
-        AFRAME.registerComponent('thumbstick-logging',{
+        AFRAME.registerComponent('start-game',{
         init: function () {
-            this.el.addEventListener('pointup', this.logThumbstick);
+            this.el.addEventListener('thumbsticktouchstart', this.logThumbstick);
         },
         logThumbstick: function (evt) {
             var label = document.getElementById('#label');
@@ -92,7 +92,7 @@
                 label = document.createElement('a-entity');
                 label.setAttribute('id', 'label');
                 label.setAttribute('text',"value: GO MONKEY!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
-                label.setAttribute('position','-3 1 0');
+                label.setAttribute('position','0 2 0');
                 label.setAttribute('scale', '6 6 6');
                 sceneEl.appendChild(label);                
             }

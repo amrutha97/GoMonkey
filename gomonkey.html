@@ -10,11 +10,10 @@
     <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.js"></script>
-    <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
 </head>
   <body>
 
-<a-scene environment="preset: default; shadow: true" physics="driver: ammo; debug: false;">
+<a-scene environment="preset: default; shadow: true" physics>
     <a-assets>
         <!-- GLTFs -->
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
@@ -105,8 +104,7 @@
                     for (let i=0; i<totalFruit; i++) {
                         fruit[i] = document.createElement('a-entity');
                         fruit[i].setAttribute('class', 'fruit');
-                        fruit[i].setAttribute('ammo-body', 'type: dynamic;mass:1;gravity: 0 0 1;');
-                        fruit[i].setAttribute('mixin','dyanmic');
+                        fruit[i].setAttribute('mixin','dynamic');
 
                         // Strawberry
                         if (i % 3) {
@@ -139,19 +137,18 @@
                         y_initial = 10; 
                         z_initial = Math.random()* (5 - (-5)) + (-5);
                         x_final = Math.random()* (5 - (-5)) + (-5);
-                        y_final = 1;
+                        y_final = 0;
                         z_final = Math.random()* (5 - (-5)) + (-5);
                         
                         // Fruit Falling
                         random_dur = Math.random() * (30000 - (20000)) + 20000;
                         fruit[i].setAttribute('position', x_initial + ' ' + y_initial + ' ' + z_initial);
-                        fruit[i].setAttribute('animation__2', 'property: position; to: ' + x_final + ' ' + y_final + ' ' + z_final + '; loop: false; dur: ' + random_dur);
+                        fruit[i].setAttribute('animation__2', 'property: position; to: ' + x_final + ' ' + y_final + ' ' + z_final + '; loop: true; dur: ' + random_dur);
 
                         // Randomize the times
                         random_time = Math.random() * (300 - (200)) + 200;
                         setTimeout(function() {
                             sceneEl.appendChild(fruit[i]);
-                            
                         }, random_time);
                     }
                 }, random_time);	

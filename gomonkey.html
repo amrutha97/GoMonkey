@@ -12,36 +12,21 @@
 
 <a-scene overlay-visibility thumbstick-logging>
     <a-assets>
+        <!-- GLTFs -->
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
         <a-asset-item id="strawberry" src="models/strawberry.glb"></a-asset-item>
         <a-asset-item id="banana" src="models/banana.glb"></a-asset-item>
         <a-asset-item id="orange" src="models/orange.glb"></a-asset-item>
         <a-asset-item id="jellyfish" src="models/jellyfish.glb"></a-asset-item>
-
-        <a-mixin id="small" scale="0.25 0.25 0.25"></a-mixin>
+        <!-- Mixins -->
+        <a-mixin id="small" scale="0.2 0.2 0.2"></a-mixin>
         <a-mixin id="mini" scale="0.0015 0.0015 0.0015"></a-mixin>
         <a-mixin id="mid" scale="0.05 0.05 0.05"></a-mixin>
         <a-mixin id="orng" scale="0.005 0.005 0.005"></a-mixin>
-
     </a-assets>
 
-    <!-- Setup -->
-    <a-entity id="camRig" position="3 2 -2" rotation="0 150.80655149013353 0">
-        <a-entity 
-            camera="" 
-            wasd-controls="" 
-            look-controls="" 
-            aframe-injected="" 
-            data-aframe-inspector-original-camera="">
-        </a-entity>
-    </a-entity>
-
-    <!-- TITLE -->
-    <a-entity
-        text="value: GO MONKEY!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;"
-        position="-3 3 0"
-        scale="6 6 6">
-    </a-entity>
+    <!-- GAME STATE -->
+    <a-entity game-state></a-entity>
 
     <!-- MONKEY -->
     <a-entity 
@@ -75,33 +60,29 @@
     </a-entity>
 
     <!-- FRUIT -->
-    <a-entity id="fruit" random-fruit></a-entity>
-   
-    <!-- <a-entity id="rig" movement-controls position="0 0 0">
-        <a-entity camera position="0 0 0" look-controls="pointerLockEnabled: true"></a-entity>
-        <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly;"></a-entity>
-        <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly;"></a-entity>
-     </a-entity> -->
+    <a-entity random-fruit></a-entity>
 
-    <!-- Meta Quest 2 -->
-    <!-- Controllers -->
-    <a-entity oculus-touch-controls="hand: left" id="handleft"></a-entity>
-    <a-entity oculus-touch-controls="hand: right" id"handright"></a-entity>
+    <!-- Meta Quest 2 - Controllers -->
+    <a-entity hand-controls="hand: left; color: #cc9966; handModelStyle: lowPoly;" id="handleft"></a-entity>
+    <a-entity hand-controls="hand: right color: #cc9966; handModelStyle: lowPoly;" id"handright"></a-entity>
 
     <script>
+        // <!-- GAME STATE -->
+        AFRAME.registerComponent('game-state', {
+            init: function() {
+                let sceneEl = document.querySelector('a-scene');
+                label = document.createElement('a-entity');
+                label.setAttribute('id', 'label');
+                label.setAttribute('text',"value: GO MONKEY!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
+                label.setAttribute('position','-3 3 0');
+                label.setAttribute('scale', '6 6 6');
+                sceneEl.appendChild(label);
 
-        AFRAME.registerComponent('thumbstick-logging',{
-            init: function () {
-                let handleft = document.getElementById('#handleft');
                 let handright = document.getElementById('#handright');
-
-                handleft.addEventListener('abuttondown', this.logThumbstick);
-                handright.addEventListener('abuttondown', this.logThumbstick);
-
-            },
-            logThumbstick: function (evt) {
                 let monkey = document.getElementById('#monkey');
-                monkey.setAttribute('position', '-3 0 0')
+                h.addEventListener("click", function (evt) {
+                    console.log('moved');
+                });
             }
         });
 
@@ -117,7 +98,7 @@
                 random_time = Math.random() * (500);
                     setTimeout(function() {
                     for (let i=0; i<totalFruit; i++){
-                        fruit[i] = document.createElement('a-entity'); // create the element
+                        fruit[i] = document.createElement('a-entity');
                         fruit[i].setAttribute('id', 'fruit');
                         if (i % 3) {
                             fruit[i].setAttribute('gltf-model', "#strawberry");
@@ -158,9 +139,7 @@
             },
         }
     );
-        
-    </script> 
-
+</script> 
 </a-scene>
 </body>
 </html>

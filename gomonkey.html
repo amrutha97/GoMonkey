@@ -6,14 +6,12 @@
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-randomizer-components@3.0.2/dist/aframe-randomizer-components.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
-    <script type="text/javascript" src="timer.js"></script>
-    <!-- <script src="track-component.js"></script> -->
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
-
+    <!-- <script type="text/javascript" src="timer.js"></script> -->
     </head>
   <body>
 
-<a-scene overlay-visibility thumbstick-logging>
+<a-scene overlay-visibility>
     <a-assets>
         <!-- GLTFs -->
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
@@ -66,43 +64,27 @@
     <a-entity random-fruit></a-entity>
 
     <!-- Meta Quest 2 - Controllers -->
-    <!--="hand: right; color: #cc9966; handModelStyle: toon;" id="handright"-->
-    <!-- <a-entity oculus-touch-controls="hand: left; color: #cc9966; handModelStyle: toon;" id="handleft" start-game></a-entity> -->
-    <!-- <a-entity oculus-touch-controls start-game></a-entity> -->
-
     <a-camera></a-camera>
-    <a-entity 
-        id="left-hand"
-        sphere-collider="objects: .monkey" 
-        super-hands 
-        hand-controls="hand: left handModelStyle: toon; color: #cc9966">
-    </a-entity>
-    <a-entity 
-        id="right-hand"
-        sphere-collider="objects: .monkey" 
-        super-hands 
-        hand-controls="hand: right handModelStyle: toon; color: #cc9966">
-    </a-entity>
-
-<a-entity id="right-hand"
-    position="0.25 0.6 0"
-    hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"
-    hand-tracking-controls="hand: right; modelColor: #ffcccc; modelStyle: lowPoly;"
-    sphere-collider="objects: .button" super-hands
-    cursor raycaster="far: 2; objects: .button"></a-entity>
-
+    <a-entity id="lefthand" sphere-collider="objects: .fruit" super-hands hand-controls="hand: left"></a-entity>
+    <a-entity id="righthand" sphere-collider="objects: .fruit" super-hands hand-controls="hand: right"></a-entity>
+    
+    <!-- CLICKHANDLER -->
+    <a-box clickhandler="txt:box1"></a-box>
+    <a-entity cursor="rayOrigin:mouse"></a-entity>
 
     <script>
 
-        AFRAME.registerComponent('start-game',{
-        init: function () {
-            // let sceneEl = document.querySelector('a-scene');
-            var label = document.getElementById('#label');
-            label.addEventListener('abuttondown', this.logThumbstick);
-        },
-        logThumbstick: function (evt) {
-            label.setAttribute('text',"value: movement detected!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
-        }
+        AFRAME.registerComponent('clickhandler', {
+            schema: {
+            txt: {default:'default'}
+            },        
+            init: function () {
+            var data = this.data;
+            var el = this.el;        
+            el.addEventListener('click', function () {            
+            console.log(data.txt);
+            });        
+            }
         });
 
         // <!-- GAME STATE -->

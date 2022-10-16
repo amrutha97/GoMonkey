@@ -53,14 +53,8 @@
     <a-sky color="#6796f5"></a-sky>
     <a-entity camera orbit-controls="initialPosition: 0 1 1"></a-entity>
 
-    <!-- START BUTTON -->
     <a-camera cursor="rayOrigin: mouse"></a-camera>
-    <button 
-        style="z-index: 999; position: fixed" 
-        onclick="start()">
-        START
-    </button>
-
+   
     <!-- TIMER -->
     <a-entity 
         id="timer" 
@@ -73,11 +67,6 @@
     <a-entity id="fruit" random-fruit></a-entity>
    
     <script>
-        function start(){
-            const clock = document.querySelector("#clock");
-            clock.reset();
-        }
-
         // <!-- FRUIT -->
 		AFRAME.registerComponent('random-fruit', {
 			init: function(){
@@ -110,7 +99,7 @@
                     y_rot = Math.random() * 360;
                     z_rot = Math.random() * 360;
 
-                    // fruit[i].setAttribute('animation', "property: rotation; to: " + x_rot + " " + y_rot + " " + z_rot + "; loop: true; dur: 10000");
+                    fruit[i].setAttribute('animation', "property: rotation; to: " + x_rot + " " + y_rot + " " + z_rot + "; loop: true; dur: 10000");
                     x_initial = Math.random()* (5 - (-5)) + (-5);
                     y_initial = 10; 
                     z_initial = Math.random()* (5 - (-5)) + (-5);

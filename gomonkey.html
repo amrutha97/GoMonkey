@@ -53,8 +53,6 @@
         id="ground"
     ></a-plane>
     <a-sky color="#6796f5"></a-sky>
-
-    <a-camera cursor="rayOrigin: mouse"></a-camera>
    
     <!-- TIMER -->
     <!-- <a-entity 
@@ -73,8 +71,8 @@
     <!-- <a-entity oculus-touch-controls start-game></a-entity> -->
 
     <a-camera></a-camera>
-    <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
-    <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
+    <a-entity sphere-collider="objects: a-entity" super-hands hand-controls="hand: left"></a-entity>
+    <a-entity sphere-collider="objects: a-entity" super-hands hand-controls="hand: right"></a-entity>
 
     <script>
 

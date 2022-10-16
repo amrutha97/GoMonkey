@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/aframe-randomizer-components@3.0.2/dist/aframe-randomizer-components.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
     <!-- <script type="text/javascript" src="timer.js"></script> -->
     </head>
   <body>
@@ -134,7 +134,7 @@
                     y_final = -2;
                     z_final = Math.random()* (5 - (-5)) + (-5);
                     
-                    random_dur = Math.random() * (10000 - (9000)) + 9000;
+                    random_dur = Math.random() * (20000 - (10000)) + 10000;
                     fruit[i].setAttribute('position', x_initial + ' ' + y_initial + ' ' + z_initial);
                     fruit[i].setAttribute('animation__2', "property: position; to: " + x_final + " " + y_final + " " + z_final+"; loop: true; dur: " + random_dur);
 

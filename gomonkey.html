@@ -8,6 +8,8 @@
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
     <script type="text/javascript" src="timer.js"></script>
     <script src="track-component.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+
     </head>
   <body>
 
@@ -31,6 +33,7 @@
 
     <!-- MONKEY -->
     <a-entity 
+        hoverable grabbable stretchable draggable dropppable
         track
         mixin="small" 
         id="monkey"   
@@ -65,12 +68,14 @@
     <a-entity random-fruit></a-entity>
 
     <!-- Meta Quest 2 - Controllers -->
+    <!--="hand: right; color: #cc9966; handModelStyle: toon;" id="handright"-->
     <!-- <a-entity oculus-touch-controls="hand: left; color: #cc9966; handModelStyle: toon;" id="handleft" start-game></a-entity> -->
-    <a-entity oculus-touch-controls="hand: right; color: #cc9966; handModelStyle: toon;" id="handright" start-game></a-entity>
+    <!-- <a-entity oculus-touch-controls start-game></a-entity> -->
 
-
-    <a-entity camera look-controls wasd-controls></a-entity> 
-
+    <a-camera></a-camera>
+    <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
+    <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
+    
     <script>
 
         AFRAME.registerComponent('start-game',{

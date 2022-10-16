@@ -63,10 +63,28 @@
     <a-entity random-fruit></a-entity>
 
     <!-- Meta Quest 2 - Controllers -->
-    <a-entity hand-controls="hand: left; color: #cc9966; handModelStyle: lowPoly;" id="handleft"></a-entity>
-    <a-entity hand-controls="hand: right color: #cc9966; handModelStyle: lowPoly;" id"handright"></a-entity>
+    <a-entity hand-controls="hand: left; color: #cc9966; handModelStyle: toon;" id="handleft" thumbstick-logging></a-entity>
+    <a-entity hand-controls="hand: right; color: #cc9966; handModelStyle: toon;" id"handright" thumbstick-logging></a-entity>
 
     <script>
+
+        AFRAME.registerComponent('thumbstick-logging',{
+        init: function () {
+            this.el.addEventListener('thumbstickmoved', this.logThumbstick);
+        },
+        logThumbstick: function (evt) {
+            var label = document.getElementById('#label');
+            label.setAttribute('text',"value: movement detected...; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
+
+            // if (evt.detail.y > 0.95) { console.log("DOWN");
+        
+            // }
+            // if (evt.detail.y < -0.95) { console.log("UP"); }
+            // if (evt.detail.x < -0.95) { console.log("LEFT"); }
+            // if (evt.detail.x > 0.95) { console.log("RIGHT"); }
+        }
+        });
+
         // <!-- GAME STATE -->
         AFRAME.registerComponent('game-state', {
             init: function() {
@@ -74,15 +92,9 @@
                 label = document.createElement('a-entity');
                 label.setAttribute('id', 'label');
                 label.setAttribute('text',"value: GO MONKEY!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
-                label.setAttribute('position','-3 3 0');
+                label.setAttribute('position','-3 1 0');
                 label.setAttribute('scale', '6 6 6');
-                sceneEl.appendChild(label);
-
-                let handright = document.getElementById('#handright');
-                let monkey = document.getElementById('#monkey');
-                h.addEventListener("click", function (evt) {
-                    console.log('moved');
-                });
+                sceneEl.appendChild(label);                
             }
         });
 

@@ -7,12 +7,15 @@
     <script src="https://unpkg.com/aframe-randomizer-components@3.0.2/dist/aframe-randomizer-components.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.1.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
+
     <!-- <script type="text/javascript" src="timer.js"></script> -->
     </head>
   <body>
 
-<a-scene overlay-visibility physics>
+<a-scene physics>
     <a-assets>
         <!-- GLTFs -->
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
@@ -22,9 +25,9 @@
         <a-asset-item id="jellyfish" src="models/jellyfish.glb"></a-asset-item>
         <!-- Mixins -->
         <a-mixin id="small" scale="0.2 0.2 0.2"></a-mixin>
-        <a-mixin id="mini" scale="0.0015 0.0015 0.0015"></a-mixin>
-        <a-mixin id="mid" scale="0.05 0.05 0.05"></a-mixin>
-        <a-mixin id="orng" scale="0.005 0.005 0.005"></a-mixin>
+        <a-mixin id="dynamic"
+        hoverable grabbable stretchable draggable dropppable 
+        ></a-mixin>
     </a-assets>
 
     <!-- GAME STATE -->
@@ -43,15 +46,16 @@
     </a-entity>
 
     <!-- PLANE -->
-    <a-plane 
-        color="#006600" 
-        rotation="-90 0 0" 
+    <a-box 
+        static-body 
+        id="ground" 
         width="100" 
-        height="100"
-        repeat="100 100"
-        id="ground"
-        static-body
-    ></a-plane>
+        height="0.01" 
+        depth="100" 
+        visible="true" 
+        color="#006600">
+    </a-box>
+
     <a-sky color="#6796f5"></a-sky>
    
     <!-- TIMER -->
@@ -60,17 +64,19 @@
         timer=" timerTime:5; DigitsColor:red"
         position="1 2 0"
     > -->
-    </a-entity>
+    <!-- </a-entity> -->
 
     <!-- FRUIT -->
     <a-entity random-fruit></a-entity>
 
     <!-- Meta Quest 2 - Controllers -->
     <a-camera></a-camera>
-    <a-entity id="lefthand" sphere-collider="objects: .fruit" super-hands hand-controls="hand: left"></a-entity>
-    <a-entity id="righthand" sphere-collider="objects: .fruit" super-hands hand-controls="hand: right"></a-entity>
+    <a-entity sphere-collider="objects: .fruit" super-hands hand-controls="hand: left"></a-entity>
+    <a-entity sphere-collider="objects: .fruit" super-hands hand-controls="hand: right"></a-entity>
     
+
     <script>
+
         // <!-- GAME STATE -->
         AFRAME.registerComponent('game-state', {
             init: function() {
@@ -100,49 +106,54 @@
                         fruit[i].setAttribute('class', 'fruit');
                         if (i % 3) {
                             fruit[i].setAttribute('gltf-model', "#strawberry");
-                            fruit[i].setAttribute('mixin',"mini");
+                            fruit[i].setAttribute('scale',"0.001 0.001 0.001");
+
                         } else if (i % 5) {
                             fruit[i].setAttribute('gltf-model', "#orange");
-                            fruit[i].setAttribute('mixin',"orng");
+                            fruit[i].setAttribute('scale',"0.005 0.005 0.005");
                         } else if (i % 7) {
                             fruit[i].setAttribute('gltf-model', "#banana");
-                            fruit[i].setAttribute('mixin',"mini");
+                            fruit[i].setAttribute('scale',"0.001 0.001 0.001");
                         } else {
                             fruit[i].setAttribute('gltf-model', "#jellyfish");
-                            fruit[i].setAttribute('mixin',"mid");
+                            fruit[i].setAttribute('scale',"0.05 0.05 0.05");
                     }
 
-                    fruit[i].setAttribute("dynamic-body")
-                    fruit[i].addEventListener('collide', 
-                        function (evt) {
-                            let label = document.getElementById('#label');
-                            label.setAttribute('text',"value: " + evt + "; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
-                            // monkey.setAttribute('position', 1 + ' ' + 0 + ' ' + 0);
-                            console.log('This A-Frame entity collided with another entity!');
-                        }
-                    ); 
-                    
-                    x_rot = Math.random() * 360;
-                    y_rot = Math.random() * 360;
-                    z_rot = Math.random() * 360;
+                    fruit[i].setAttribute('mixin',"dynamic");
+                    // fruit[i].addEventListener('collide', 
+                    //     function (evt) {
+                    //         let label = document.getElementById('#label');
+                    //         label.setAttribute('text',"value: " + evt + "; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
+                    //         // monkey.setAttribute('position', 1 + ' ' + 0 + ' ' + 0);
+                    //         console.log('This A-Frame entity collided with another entity!');
+                    //     }
+                    // ); 
 
-                    fruit[i].setAttribute('animation', "property: rotation; to: " + x_rot + " " + y_rot + " " + z_rot + "; loop: true; dur: 10000");
-                    x_initial = Math.random()* (5 - (-5)) + (-5);
-                    y_initial = 10; 
-                    z_initial = Math.random()* (5 - (-5)) + (-5);
-                    x_final = Math.random()* (5 - (-5)) + (-5);
-                    y_final = -2;
-                    z_final = Math.random()* (5 - (-5)) + (-5);
-                    
-                    random_dur = Math.random() * (20000 - (10000)) + 10000;
-                    fruit[i].setAttribute('position', x_initial + ' ' + y_initial + ' ' + z_initial);
-                    fruit[i].setAttribute('animation__2', "property: position; to: " + x_final + " " + y_final + " " + z_final+"; loop: true; dur: " + random_dur);
+                        // Random fruit rotation                    
+                        x_rot = Math.random() * 360;
+                        y_rot = Math.random() * 360;
+                        z_rot = Math.random() * 360;
 
-                    random_time = Math.random() * (300 - (200)) + 200;
-                    setTimeout(function() {
-                        sceneEl.appendChild(fruit[i]);
+                        fruit[i].setAttribute('animation', "property: rotation; to: " + x_rot + " " + y_rot + " " + z_rot + "; loop: true; dur: 10000");
+                        x_initial = Math.random()* (5 - (-5)) + (-5);
+                        y_initial = 10; 
+                        z_initial = Math.random()* (5 - (-5)) + (-5);
+                        x_final = Math.random()* (5 - (-5)) + (-5);
+                        y_final = -2;
+                        z_final = Math.random()* (5 - (-5)) + (-5);
                         
-                    }, random_time);
+                        // Fruit Falling
+                        random_dur = Math.random() * (20000 - (10000)) + 10000;
+                        fruit[i].setAttribute('position', x_initial + ' ' + y_initial + ' ' + z_initial);
+                        fruit[i].setAttribute('animation__2', "property: position; to: " + x_final + " " + y_final + " " + z_final+"; loop: true; dur: " + random_dur);
+
+                        random_time = Math.random() * (300 - (200)) + 200;
+
+                        // Randomize the times
+                        setTimeout(function() {
+                            sceneEl.appendChild(fruit[i]);
+                            
+                        }, random_time);
 				    }
                 }, random_time);	
             },

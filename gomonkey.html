@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/aframe-randomizer-components@3.0.2/dist/aframe-randomizer-components.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
     <!-- <script type="text/javascript" src="timer.js"></script> -->
     </head>
   <body>
@@ -49,6 +50,7 @@
         height="100"
         repeat="100 100"
         id="ground"
+        static-body
     ></a-plane>
     <a-sky color="#6796f5"></a-sky>
    
@@ -109,27 +111,37 @@
                             fruit[i].setAttribute('gltf-model', "#jellyfish");
                             fruit[i].setAttribute('mixin',"mid");
                     }
+
+                    fruit[i].addEventListener('collide', 
+                        function (evt) {
+                            let label = document.getElementById('#label');
+                            label.setAttribute('text',"value: " + evt + "; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
+                            // monkey.setAttribute('position', 1 + ' ' + 0 + ' ' + 0);
+                            console.log('This A-Frame entity collided with another entity!');
+                        }
+                    ); 
                     
-                        x_rot = Math.random() * 360;
-                        y_rot = Math.random() * 360;
-                        z_rot = Math.random() * 360;
+                    x_rot = Math.random() * 360;
+                    y_rot = Math.random() * 360;
+                    z_rot = Math.random() * 360;
 
-                        fruit[i].setAttribute('animation', "property: rotation; to: " + x_rot + " " + y_rot + " " + z_rot + "; loop: true; dur: 10000");
-                        x_initial = Math.random()* (5 - (-5)) + (-5);
-                        y_initial = 10; 
-                        z_initial = Math.random()* (5 - (-5)) + (-5);
-                        x_final = Math.random()* (5 - (-5)) + (-5);
-                        y_final = -2;
-                        z_final = Math.random()* (5 - (-5)) + (-5);
+                    fruit[i].setAttribute('animation', "property: rotation; to: " + x_rot + " " + y_rot + " " + z_rot + "; loop: true; dur: 10000");
+                    x_initial = Math.random()* (5 - (-5)) + (-5);
+                    y_initial = 10; 
+                    z_initial = Math.random()* (5 - (-5)) + (-5);
+                    x_final = Math.random()* (5 - (-5)) + (-5);
+                    y_final = -2;
+                    z_final = Math.random()* (5 - (-5)) + (-5);
+                    
+                    random_dur = Math.random() * (10000 - (9000)) + 9000;
+                    fruit[i].setAttribute('position', x_initial + ' ' + y_initial + ' ' + z_initial);
+                    fruit[i].setAttribute('animation__2', "property: position; to: " + x_final + " " + y_final + " " + z_final+"; loop: true; dur: " + random_dur);
+
+                    random_time = Math.random() * (300 - (200)) + 200;
+                    setTimeout(function() {
+                        sceneEl.appendChild(fruit[i]);
                         
-                        random_dur = Math.random() * (10000 - (9000)) + 9000;
-                        fruit[i].setAttribute('position', x_initial + ' ' + y_initial + ' ' + z_initial);
-                        fruit[i].setAttribute('animation__2', "property: position; to: " + x_final + " " + y_final + " " + z_final+"; loop: true; dur: " + random_dur);
-
-                        random_time = Math.random() * (300 - (200)) + 200;
-                        setTimeout(function() {
-                            sceneEl.appendChild(fruit[i]);
-                        }, random_time);
+                    }, random_time);
 				    }
                 }, random_time);	
             },

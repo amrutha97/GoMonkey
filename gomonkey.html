@@ -59,8 +59,11 @@
     <a-entity random-fruit></a-entity>
 
     <!-- Quest Controllers -->
-    <a-camera></a-camera>
-    <a-entity sphere-collider="objects: .fruit" super-hands hand-controls="hand: left"></a-entity>
+    <a-entity id="rig" movement-controls kinematic-body foo>
+        <a-entity id="camera" camera position="0 1.6 0" look-controls></a-entity>
+    </a-entity>
+    
+          <a-entity sphere-collider="objects: .fruit" super-hands hand-controls="hand: left"></a-entity>
     <a-entity sphere-collider="objects: .fruit" super-hands hand-controls="hand: right"></a-entity>
 
     <script>
@@ -86,9 +89,8 @@
                 let sceneEl = document.querySelector('a-scene');
 
                 // Random time to spawn fruit
-                random_time = Math.random() * (500);
+                random_time = Math.random() * 500;
                 setTimeout(function() {
-
                     // Make fruit
                     for (let i=0; i<totalFruit; i++) {
                         fruit[i] = document.createElement('a-entity');

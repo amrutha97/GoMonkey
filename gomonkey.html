@@ -4,7 +4,9 @@
         <title>Go Monkey</title>
         <meta name="description" content="Go Monkey">
     <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
-  </head>
+    <script src="https://unpkg.com/aframe-randomizer-components@3.0.2/dist/aframe-randomizer-components.min.js"></script>
+    <script type="text/javascript" src="timer.js"></script>
+    </head>
   <body>
 
 <a-scene overlay-visibility>
@@ -12,23 +14,12 @@
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
         <a-asset-item id="fruit" src="models/strawberry.glb"></a-asset-item>
         <a-mixin id="small" scale="0.5 0.5 0.5"></a-mixin>
-        <a-mixin id="mini" scale="0.005 0.005 0.005"></a-mixin>
+        <a-mixin id="mini" scale="0.002 0.002 0.002"></a-mixin>
     </a-assets>
- 
-    <!-- <a-scene fog="type: exponential; density: 0.15; color: #ffffff;"> -->
-    <!-- <a-animation attribute="fog.color"
-            dur="7000"
-            from="#fff"
-            to="#10454A"
-            repeat="indefinite"
-            direction="alternate">
-    </a-animation> -->
-    <!-- <a-light type="ambient" intensity=".1" color="#FF54CA"></a-light> -->
 
-
-    <!-- CAMERA -->
-    <!-- <a-camera position="90 0 0"></a-camera> -->
-
+    <!-- <a-entity geometry="primitive: box"
+              random-position random-rotation random-scale></a-entity>
+  -->
     <!-- MONKEY -->
     <a-entity 
         id="parent" 
@@ -52,6 +43,7 @@
     >    
         <a-entity 
             animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+            animation__2="property: position; to: 0 0 5; loop: true; dur: 10000"
             mixin="mini"
             id="fruit"   
             gltf-model="#fruit"   
@@ -59,7 +51,7 @@
             rotation="90 180 90">
         </a-entity>
     </a-entity>
-    <a-entity camera look-controls position="0 1.6 0"></a-entity>
+    <a-entity camera look-controls position="5 1 0"></a-entity>
 
     <!-- PLANE -->
     <a-plane 
@@ -67,22 +59,87 @@
         rotation="-90 0 0" 
         width="30" 
         height="30"
-        repeat="10 10">
+        repeat="10 10"
+        id="ground"
+        animation__mouseenter="property: components.material.material.color; type: color; to: red; startEvents: mouseenter; dur: 1";
+        animation__mouseleave="property: components.material.material.color; type: color; to: green; startEvents: mouseleave; dur: 1";>
+        >
     </a-plane>
     <a-sky color="#6796f5"></a-sky>
+    <a-entity camera orbit-controls="initialPosition: 0 1 1"></a-entity>
 
-    <!-- SCRIPT --> 
+    <!-- START BUTTON -->
+    <a-camera cursor="rayOrigin: mouse"></a-camera>
+    <button 
+        style="z-index: 999; position: fixed" 
+        onclick="start()">
+        START
+    </button>
+
+    <!-- TIMER -->
+    <a-entity 
+        id="timer" 
+        timer=" timerTime:5;DigitsColor:red"
+        position="0 1.5 -5">
+    </a-entity>
+
+    <a-entity id="fruit" random-fruit></a-entity>
+   
     <script>
-        var el = document.querySelector('#monkey');
+        function start(){
+            const clock = document.querySelector("#clock");
+            // clock.setAttribute("time",0);
+            clock.reset();
+        }
 
-    //   AFRAME.registerComponent('overlay-visibility', {
-    //     init: function () {
-    //       if (!this.el.isMobile) {
-    //         document.querySelector('#about').style.display = 'block';
-    //       }
-    //     }
-    //   });
-    </script>
+		AFRAME.registerComponent('random-fruit', {
+			init: function(){
+				let countX = 10;
+				let fruit = [];
+				let size = 0.125, spacing = 0.05, x;
+				let sceneEl = document.querySelector('a-scene');
+				for (let i=0; i<countX; i++){
+					fruit[i] = document.createElement('a-entity'); // create the element
+        //             <a-entity 
+        //     animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+        //     animation__2="property: position; to: 0 0 5; loop: true; dur: 10000"
+        //     mixin="mini"
+        //     id="fruit"   
+        //     gltf-model="#fruit"   
+        //     position="0 10 5"  
+        //     rotation="90 180 90">
+        // </a-entity>
+
+                    fruit[i].setAttribute('id', 'box_'+i.toString());
+					fruit[i].setAttribute('geometry', {
+						primitive: 'box',
+						height: size,
+						width: size,
+						depth: size
+					});
+					x = (size + spacing) * countX * (-0.5) + i * (size + spacing) ;
+					y = Math.random() * 0.25;
+					fruit[i].setAttribute('position', x.toString()+ ' '+y.toString()+' 0' );
+          
+          // you can add event listeners here for interaction, such as mouse events.
+					sceneEl.appendChild(fruit[i]);// Append the element to the scene, so it becomes part of the DOM.
+				}
+        // If you want to access THREEjs properties, you need to access them after they have loaded into the scene.
+        // Get the fruit as THREEjs object
+				cubePosArr = [];
+				fruit.forEach(function(c){
+					c.addEventListener('loaded', function(ev){
+						let cube3D = c.getObject3D('mesh');
+						//console.log(cube3D);
+						cubePosArr.push(cube3D.position.x);
+						console.log(cubePosArr);
+					});
+				});
+			}
+        });
+        
+    </script> 
+
 </a-scene>
 </body>
 </html>

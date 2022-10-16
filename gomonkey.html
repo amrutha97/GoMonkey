@@ -10,7 +10,7 @@
     </head>
   <body>
 
-<a-scene overlay-visibility>
+<a-scene overlay-visibility thumbstick-logging>
     <a-assets>
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
         <a-asset-item id="strawberry" src="models/strawberry.glb"></a-asset-item>
@@ -24,6 +24,17 @@
         <a-mixin id="orng" scale="0.005 0.005 0.005"></a-mixin>
 
     </a-assets>
+
+    <!-- Setup -->
+    <a-entity id="camRig" position="3 2 -2" rotation="0 150.80655149013353 0">
+        <a-entity 
+            camera="" 
+            wasd-controls="" 
+            look-controls="" 
+            aframe-injected="" 
+            data-aframe-inspector-original-camera="">
+        </a-entity>
+    </a-entity>
 
     <!-- TITLE -->
     <a-entity
@@ -66,13 +77,31 @@
     <!-- FRUIT -->
     <a-entity id="fruit" random-fruit></a-entity>
    
-    <a-entity id="rig" movement-controls position="0 0 0">
+    <!-- <a-entity id="rig" movement-controls position="0 0 0">
         <a-entity camera position="0 0 0" look-controls="pointerLockEnabled: true"></a-entity>
         <a-entity id="leftHand" hand-controls="hand: left; handModelStyle: lowPoly;"></a-entity>
         <a-entity id="rightHand" hand-controls="hand: right; handModelStyle: lowPoly;"></a-entity>
-     </a-entity>
+     </a-entity> -->
+
+    <!-- Meta Quest 2 -->
+    <!-- Controllers -->
+    <a-entity oculus-touch-controls="hand: left"></a-entity>
+    <a-entity oculus-touch-controls="hand: right"></a-entity>
 
     <script>
+
+        AFRAME.registerComponent('thumbstick-logging',{
+        init: function () {
+            this.el.addEventListener('thumbstickmoved', this.logThumbstick);
+        },
+        logThumbstick: function (evt) {
+            if (evt.detail.y > 0.95) { console.log("DOWN"); }
+            if (evt.detail.y < -0.95) { console.log("UP"); }
+            if (evt.detail.x < -0.95) { console.log("LEFT"); }
+            if (evt.detail.x > 0.95) { console.log("RIGHT"); }
+        }
+        });
+
         // <!-- FRUIT -->
 		AFRAME.registerComponent('random-fruit', {
 			init: function(){

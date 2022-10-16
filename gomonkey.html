@@ -85,34 +85,23 @@
 
     <!-- Meta Quest 2 -->
     <!-- Controllers -->
-    <a-entity oculus-touch-controls="hand: left"></a-entity>
-    <a-entity oculus-touch-controls="hand: right"></a-entity>
+    <a-entity oculus-touch-controls="hand: left" id="handleft"></a-entity>
+    <a-entity oculus-touch-controls="hand: right" id"handright"></a-entity>
 
     <script>
 
         AFRAME.registerComponent('thumbstick-logging',{
             init: function () {
-                this.el.addEventListener('thumbstickmoved', this.logThumbstick);
+                let handleft = document.getElementById('#handleft');
+                let handright = document.getElementById('#handright');
+
+                handleft.addEventListener('abuttondown', this.logThumbstick);
+                handright.addEventListener('abuttondown', this.logThumbstick);
+
             },
             logThumbstick: function (evt) {
                 let monkey = document.getElementById('#monkey');
-
-                if (evt.detail.y > 0.95) { 
-                    console.log("DOWN"); 
-                    monkey.setAttribute('position', '-3 0 0')
-                }
-                if (evt.detail.y < -0.95) { 
-                    console.log("UP"); }
-                    monkey.setAttribute('position', '0 3 0')
-
-                if (evt.detail.x < -0.95) { 
-                    console.log("LEFT"); 
-                    monkey.setAttribute('position', '0 0 3')
-                }
-                if (evt.detail.x > 0.95) { 
-                    console.log("RIGHT"); 
-                    monkey.setAttribute('position', '0 0 -3')
-                }
+                monkey.setAttribute('position', '-3 0 0')
             }
         });
 

@@ -12,7 +12,7 @@
     </head>
   <body>
 
-<a-scene overlay-visibility>
+<a-scene overlay-visibility physics>
     <a-assets>
         <!-- GLTFs -->
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
@@ -112,6 +112,7 @@
                             fruit[i].setAttribute('mixin',"mid");
                     }
 
+                    fruit[i].setAttribute("dynamic-body")
                     fruit[i].addEventListener('collide', 
                         function (evt) {
                             let label = document.getElementById('#label');

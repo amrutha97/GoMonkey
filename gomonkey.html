@@ -15,9 +15,13 @@
         <a-asset-item id="strawberry" src="models/strawberry.glb"></a-asset-item>
         <a-asset-item id="banana" src="models/banana.glb"></a-asset-item>
         <a-asset-item id="orange" src="models/orange.glb"></a-asset-item>
+        <a-asset-item id="jellyfish" src="models/jellyfish.glb"></a-asset-item>
 
-        <a-mixin id="small" scale="0.1 0.1 0.1"></a-mixin>
+        <a-mixin id="small" scale="0.25 0.25 0.25"></a-mixin>
         <a-mixin id="mini" scale="0.0015 0.0015 0.0015"></a-mixin>
+        <a-mixin id="mid" scale="0.05 0.05 0.05"></a-mixin>
+        <a-mixin id="orng" scale="0.005 0.005 0.005"></a-mixin>
+
     </a-assets>
 
     <!-- TITLE -->
@@ -61,7 +65,8 @@
     <a-entity 
         id="timer" 
         timer=" timerTime:5; DigitsColor:red"
-        position="3 3 3">
+        position="1 2 0"
+    >
     </a-entity>
 
     <!-- FRUIT -->
@@ -76,34 +81,42 @@
         // <!-- FRUIT -->
 		AFRAME.registerComponent('random-fruit', {
 			init: function(){
-				let totalFruit = 30;
+				let totalFruit = 28;
 				let fruit = [];
-				let size = 0.125, spacing = 3, x;
+				let size = 0.125;
                 let sceneEl = document.querySelector('a-scene');
                 
                 // Create a fruit
 				for (let i=0; i<totalFruit; i++){
 					fruit[i] = document.createElement('a-entity'); // create the element
                     fruit[i].setAttribute('id', 'fruit');
-                    if (i < 10) {
+                    if (i < 7) {
                         fruit[i].setAttribute('gltf-model', "#strawberry");
-                    } else if (i < 20 && i >= 10) {
+                        fruit[i].setAttribute('mixin',"mini");
+                    } else if (i < 14 && i >= 7) {
                         fruit[i].setAttribute('gltf-model', "#orange");
-                    } else {
+                        fruit[i].setAttribute('mixin',"orng");
+                    } else if (i < 21 && i >= 14) {
                         fruit[i].setAttribute('gltf-model', "#banana");
-                    }
+                        fruit[i].setAttribute('mixin',"mini");
+                    } else {
+                        fruit[i].setAttribute('gltf-model', "#jellyfish");
+                        fruit[i].setAttribute('mixin',"mid");
+                   }
 
-                    fruit[i].setAttribute('mixin',"mini");
+                    // fruit[i].setAttribute('class','collidable');
+                
                     x_rot = Math.random() * 360;
                     y_rot = Math.random() * 360;
                     z_rot = Math.random() * 360;
-                    fruit[i].setAttribute('animation', "property: rotation; to: " + x_rot + " " + y_rot + " " + z_rot + "; loop: true; dur: 10000");
-                    x_initial = Math.random()* (10 - (-10)) + (-10);
+
+                    // fruit[i].setAttribute('animation', "property: rotation; to: " + x_rot + " " + y_rot + " " + z_rot + "; loop: true; dur: 10000");
+                    x_initial = Math.random()* (5 - (-5)) + (-5);
                     y_initial = 10; 
-                    z_initial = Math.random()* (10 - (-10)) + (-10);
-                    x_final = Math.random()* (10 - (-10)) + (-10);
+                    z_initial = Math.random()* (5 - (-5)) + (-5);
+                    x_final = Math.random()* (5 - (-5)) + (-5);
 					y_final = 0;
-					z_final = Math.random()* (10 - (-10)) + (-10);
+					z_final = Math.random()* (5 - (-5)) + (-5);
                     fruit[i].setAttribute('position', x_initial + ' ' + y_initial + ' ' + z_initial);
                     fruit[i].setAttribute('animation__2', "property: position; to: " + x_final + " " + y_final + " " + z_final+"; loop: true; dur: 10000");
 					sceneEl.appendChild(fruit[i]);
@@ -111,6 +124,18 @@
 			}
         });
         
+        // function collisionHandler (event) {
+        //     console.log('Entity collided with', event.detail.collidingEntity);
+        //     setTimeout(() => {
+        //         console.log('one second later...', event.detail.collidingEntity);
+        //     }, 1000)
+        // }
+
+        // const collidables = document.querySelectorAll('.collidable');
+        // console.log(`collidables ${collidables.length}`);
+        // collidables.forEach(cld => {
+        //     cld.addEventListener('physicscollided', collisionHandler);
+        // })
     </script> 
 
 </a-scene>

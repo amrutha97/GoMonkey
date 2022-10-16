@@ -36,7 +36,7 @@
         hoverable grabbable stretchable draggable dropppable
         track
         mixin="small" 
-        id="monkey"   
+        class="monkey"   
         gltf-model="#monkey"   
         position="0 0 0" 
         rotation="180 180 180"
@@ -71,8 +71,8 @@
     <!-- <a-entity oculus-touch-controls start-game></a-entity> -->
 
     <a-camera></a-camera>
-    <a-entity sphere-collider="objects: a-entity" super-hands hand-controls="hand: left"></a-entity>
-    <a-entity sphere-collider="objects: a-entity" super-hands hand-controls="hand: right"></a-entity>
+    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: left"></a-entity>
+    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: right"></a-entity>
 
     <script>
 
@@ -113,7 +113,7 @@
                     setTimeout(function() {
                     for (let i=0; i<totalFruit; i++){
                         fruit[i] = document.createElement('a-entity');
-                        fruit[i].setAttribute('id', 'fruit');
+                        fruit[i].setAttribute('class', 'fruit');
                         if (i % 3) {
                             fruit[i].setAttribute('gltf-model', "#strawberry");
                             fruit[i].setAttribute('mixin',"mini");

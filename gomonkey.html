@@ -68,25 +68,7 @@
     <a-entity id="lefthand" sphere-collider="objects: .fruit" super-hands hand-controls="hand: left"></a-entity>
     <a-entity id="righthand" sphere-collider="objects: .fruit" super-hands hand-controls="hand: right"></a-entity>
     
-    <!-- CLICKHANDLER -->
-    <a-box clickhandler="txt:box1"></a-box>
-    <a-entity cursor="rayOrigin:mouse"></a-entity>
-
     <script>
-
-        AFRAME.registerComponent('clickhandler', {
-            schema: {
-            txt: {default:'default'}
-            },        
-            init: function () {
-            var data = this.data;
-            var el = this.el;        
-            el.addEventListener('click', function () {            
-            console.log(data.txt);
-            });        
-            }
-        });
-
         // <!-- GAME STATE -->
         AFRAME.registerComponent('game-state', {
             init: function() {

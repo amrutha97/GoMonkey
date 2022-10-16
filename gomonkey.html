@@ -12,7 +12,10 @@
 <a-scene overlay-visibility>
     <a-assets>
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
-        <a-asset-item id="fruit" src="models/strawberry.glb"></a-asset-item>
+        <a-asset-item id="strawberry" src="models/strawberry.glb"></a-asset-item>
+        <a-asset-item id="banana" src="models/banana.glb"></a-asset-item>
+        <a-asset-item id="orange" src="models/orange.glb"></a-asset-item>
+
         <a-mixin id="small" scale="0.5 0.5 0.5"></a-mixin>
         <a-mixin id="mini" scale="0.0015 0.0015 0.0015"></a-mixin>
     </a-assets>
@@ -66,17 +69,24 @@
         // <!-- FRUIT -->
 		AFRAME.registerComponent('random-fruit', {
 			init: function(){
-				let countX = 30;
+				let totalFruit = 30;
 				let fruit = [];
 				let size = 0.125, spacing = 3, x;
                 let sceneEl = document.querySelector('a-scene');
                 
                 // Create a fruit
-				for (let i=0; i<countX; i++){
+				for (let i=0; i<totalFruit; i++){
 					fruit[i] = document.createElement('a-entity'); // create the element
                     fruit[i].setAttribute('id', 'fruit');
+                    if (i < 10) {
+                        fruit[i].setAttribute('gltf-model', "#strawberry");
+                    } else if (i < 20 && i >= 10) {
+                        fruit[i].setAttribute('gltf-model', "#orange");
+                    } else {
+                        fruit[i].setAttribute('gltf-model', "#banana");
+                    }
+
                     fruit[i].setAttribute('mixin',"mini");
-                    fruit[i].setAttribute('gltf-model', "#fruit");
                     x_rot = Math.random() * 360;
                     y_rot = Math.random() * 360;
                     z_rot = Math.random() * 360;

@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/aframe-randomizer-components@3.0.2/dist/aframe-randomizer-components.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js"></script>
     <script type="text/javascript" src="timer.js"></script>
+    <script src="track-component.js"></script>
     </head>
   <body>
 
@@ -30,6 +31,7 @@
 
     <!-- MONKEY -->
     <a-entity 
+        track
         mixin="small" 
         id="monkey"   
         gltf-model="#monkey"   
@@ -65,6 +67,9 @@
     <!-- Meta Quest 2 - Controllers -->
     <!-- <a-entity oculus-touch-controls="hand: left; color: #cc9966; handModelStyle: toon;" id="handleft" start-game></a-entity> -->
     <a-entity oculus-touch-controls="hand: right; color: #cc9966; handModelStyle: toon;" id="handright" start-game></a-entity>
+
+
+    <a-entity camera look-controls wasd-controls></a-entity> 
 
     <script>
 

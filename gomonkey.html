@@ -26,7 +26,7 @@
         <!-- Mixins -->
         <a-mixin id="small" scale="0.2 0.2 0.2"></a-mixin>
         <a-mixin id="dynamic"
-        hoverable grabbable stretchable draggable dropppable
+            hoverable grabbable stretchable draggable dropppable
         ></a-mixin>
     </a-assets>
 
@@ -138,13 +138,13 @@
                         y_initial = 10; 
                         z_initial = Math.random()* (5 - (-5)) + (-5);
                         x_final = Math.random()* (5 - (-5)) + (-5);
-                        y_final = -2;
+                        y_final = 0;
                         z_final = Math.random()* (5 - (-5)) + (-5);
                         
                         // Fruit Falling
                         random_dur = Math.random() * (30000 - (20000)) + 20000;
                         fruit[i].setAttribute('position', x_initial + ' ' + y_initial + ' ' + z_initial);
-                        fruit[i].setAttribute('animation__2', "property: position; to: " + x_final + " " + y_final + " " + z_final+"; loop: true; dur: " + random_dur);
+                        fruit[i].setAttribute('animation__2', "property: position; to: " + x_final + " " + y_final + " " + z_final+"; loop: false; dur: " + random_dur);
 
                         random_time = Math.random() * (300 - (200)) + 200;
 

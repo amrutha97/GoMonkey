@@ -71,8 +71,26 @@
     <!-- <a-entity oculus-touch-controls start-game></a-entity> -->
 
     <a-camera></a-camera>
-    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: left"></a-entity>
-    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: right"></a-entity>
+    <a-entity 
+        id="left-hand"
+        sphere-collider="objects: .monkey" 
+        super-hands 
+        hand-controls="hand: left handModelStyle: toon; color: #cc9966">
+    </a-entity>
+    <a-entity 
+        id="right-hand"
+        sphere-collider="objects: .monkey" 
+        super-hands 
+        hand-controls="hand: right handModelStyle: toon; color: #cc9966">
+    </a-entity>
+
+<a-entity id="right-hand"
+    position="0.25 0.6 0"
+    hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"
+    hand-tracking-controls="hand: right; modelColor: #ffcccc; modelStyle: lowPoly;"
+    sphere-collider="objects: .button" super-hands
+    cursor raycaster="far: 2; objects: .button"></a-entity>
+
 
     <script>
 

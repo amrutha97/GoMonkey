@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.js"></script>
     <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
 </head>
   <body>
 
@@ -69,8 +70,8 @@
 
     <!-- Quest Controllers -->
     <a-entity camera position="0 1.6 0" look-controls wasd-controls> </a-entity>
-    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: left" aabb-collider="objects: .fruit"></a-entity>
-    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: right" aabb-collider="objects: .fruit"></a-entity>
+    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: left" aabb-collider="objects: .fruit" haptics="events: triggerdown; dur: 1000; force: 0.5"></a-entity>
+    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: right" aabb-collider="objects: .fruit" haptics="events: triggerdown; dur: 1000; force: 0.5"></a-entity>
 
     <script>
 

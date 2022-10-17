@@ -48,8 +48,7 @@
         play-sound-on-event="mode: toggle-stop; event: hitstart"
         >
     </a-entity>
-
-    <!-- event-set__hitstart="property: rotatestartEvents: hitstart; dur: 500";
+<!-- event-set__hitstart="property: rotatestartEvents: hitstart; dur: 500";
     event-set__hitend="scale: 0.2 0.2 0.2" -->
 
     <!-- PLANE -->
@@ -70,26 +69,31 @@
     <!-- FRUIT -->
     <a-entity random-fruit></a-entity>
 
+    <a-entity game-state></a-entity>      
+    <a-entity 
+        id="score" 
+        text="value: SCORE 0; color: red; font: mozillavr; letterSpacing: 1; align: center;" 
+        position="0 1.7 0"
+        event-set__hitstart="text: value: SCORE 1;"
+        >
+    </a-entity>
+
     <!-- Quest Controllers -->
-    <a-entity camera position="0 1.6 0" look-controls wasd-controls> </a-entity>
-    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: left" aabb-collider="objects: .fruit" haptics="events: triggerdown; dur: 1000; force: 0.5"></a-entity>
-    <a-entity sphere-collider="objects: .monkey" super-hands hand-controls="hand: right" aabb-collider="objects: .fruit" haptics="events: triggerdown; dur: 1000; force: 0.5"></a-entity>
+    <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
+    <a-entity 
+        sphere-collider="objects: .monkey" 
+        super-hands hand-controls="hand: left" 
+        aabb-collider="objects: .fruit" 
+        haptics="events: triggerdown; dur: 1000; force: 0.5">
+    </a-entity>
+    <a-entity 
+        sphere-collider="objects: .monkey" 
+        super-hands hand-controls="hand: right" 
+        aabb-collider="objects: .fruit" 
+        haptics="events: triggerdown; dur: 1000; force: 0.5">
+    </a-entity>
 
     <script>
-
-
-        // <!-- COLLIDER -->
-        AFRAME.registerComponent('collider', {
-            init: function() {
-            let monkey = document.getElementById('#monkey');
-            monkey.addEventListener('hitstart', function() {
-                // console.log('Player has collided with ', e.detail.body.el);
-                score = document.getElementById("#label");
-                score.setAttribute('text',"value: collided!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
-            });
-            }
-        })
-
         // <!-- GAME STATE -->
         AFRAME.registerComponent('game-state', {
             init: function() {
@@ -119,6 +123,7 @@
                         fruit[i] = document.createElement('a-entity');
                         fruit[i].setAttribute('class', 'fruit');
                         fruit[i].setAttribute('mixin','dynamic');
+                        // fruit[i].setAttribute('dynamic-body', 'mass:0.5');
 
                         // Strawberry
                         if (i % 3) {

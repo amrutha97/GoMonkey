@@ -59,7 +59,6 @@
         depth="100" 
         visible="true" 
         color="#006600"
-        aabb-collider="objects: .fruit"
         >
     </a-box>
 
@@ -74,8 +73,7 @@
         id="score" 
         text="value: SCORE 0; color: red; font: mozillavr; letterSpacing: 1; align: center;" 
         position="0 1.7 0"
-        event-set__hitstart="text: value: SCORE 1;"
-        >
+        event-set__hitstart="text: value: SCORE 1;">
     </a-entity>
 
     <!-- Quest Controllers -->
@@ -83,17 +81,22 @@
     <a-entity 
         sphere-collider="objects: .monkey" 
         super-hands hand-controls="hand: left" 
-        aabb-collider="objects: .fruit" 
-        haptics="events: triggerdown; dur: 1000; force: 0.5">
+        haptics="events: hitstart; dur: 1000; force: 0.5">
     </a-entity>
     <a-entity 
         sphere-collider="objects: .monkey" 
         super-hands hand-controls="hand: right" 
-        aabb-collider="objects: .fruit" 
-        haptics="events: triggerdown; dur: 1000; force: 0.5">
+        haptics="events: hitstart; dur: 1000; force: 0.5">
     </a-entity>
 
     <script>
+        let scene = document.querySelector('a-scene');
+        scene.addEventListener('hitstart', 
+            function () {
+                let score = document.querySelector('#score');
+                score.setAttribute('text','value: SCORE 1');
+            });
+
         // <!-- GAME STATE -->
         AFRAME.registerComponent('game-state', {
             init: function() {

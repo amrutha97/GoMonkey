@@ -43,8 +43,8 @@
         rotation="180 180 180"
         scale="0.2 0.2 0.2"
         aabb-collider="objects: .fruit"
-        event-set__hitstart="material.opacity: 0.5; material.color: orange"
-        event-set__hitend="material.opacity: 1"
+        event-set__hitstart="scale: 1 1 1"
+        event-set__hitend="scale: 0.2 0.2 0.2"
         >
     </a-entity>
 
@@ -73,16 +73,17 @@
 
     <script>
 
+
         // <!-- COLLIDER -->
-        AFRAME.registerComponent('collider', {
-            init: function() {
-            let monkey = document.getElementById('#monkey');
-            monkey.addEventListener('collide', function(e) {
-                // console.log('Player has collided with ', e.detail.body.el);
-                monkey.setAttribute('scale', '0.4 0.4 0.4');
-            });
-            }
-        })
+        // AFRAME.registerComponent('collider', {
+        //     init: function() {
+        //     let monkey = document.getElementById('#monkey');
+        //     monkey.addEventListener('collide', function(e) {
+        //         // console.log('Player has collided with ', e.detail.body.el);
+        //         monkey.setAttribute('scale', '0.4 0.4 0.4');
+        //     });
+        //     }
+        // })
 
         // <!-- GAME STATE -->
         AFRAME.registerComponent('game-state', {

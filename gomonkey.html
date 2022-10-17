@@ -95,17 +95,20 @@
         // <!-- SCORE BOARD -->
         AFRAME.registerComponent('score-board', {
             init: function() {
-                let sceneEl = document.querySelector('a-scene');
+                let scene = document.querySelector('a-scene');
                 score = document.createElement('a-entity');
                 scoreData = 0;
                 label.setAttribute('id', 'score');
                 label.setAttribute('text','value: SCORE ' + scoreData + '; color: red; font: mozillavr; letterSpacing: 1; align: center;');
                 label.setAttribute('position','0 1.7 0');
                 label.setAttribute('scale', '2.5 2.5 2.5');
-                sceneEl.addEventListener('hitstart', function () {
-                    score.setAttribute('text','value: SCORE ' + scoreData++);
-                });
-                sceneEl.appendChild(label);                
+                scene.addEventListener('hitstart', 
+                    function () {
+                        scoreData += 1;
+                        score.setAttribute('text','value: SCORE ' + scoreData + '; color: red; font: mozillavr; letterSpacing: 1; align: center;');
+                    }
+                );
+                scene.appendChild(label);                
             }
         });
 

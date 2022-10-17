@@ -43,10 +43,11 @@
         rotation="180 180 180"
         scale="0.2 0.2 0.2"
         aabb-collider="objects: .fruit"
-        event-set__hitstart="scale: 1 1 1"
-        event-set__hitend="scale: 0.2 0.2 0.2"
         >
     </a-entity>
+
+    <!-- event-set__hitstart="property: rotatestartEvents: hitstart; dur: 500";
+    event-set__hitend="scale: 0.2 0.2 0.2" -->
 
     <!-- PLANE -->
     <a-box 
@@ -75,15 +76,16 @@
 
 
         // <!-- COLLIDER -->
-        // AFRAME.registerComponent('collider', {
-        //     init: function() {
-        //     let monkey = document.getElementById('#monkey');
-        //     monkey.addEventListener('collide', function(e) {
-        //         // console.log('Player has collided with ', e.detail.body.el);
-        //         monkey.setAttribute('scale', '0.4 0.4 0.4');
-        //     });
-        //     }
-        // })
+        AFRAME.registerComponent('collider', {
+            init: function() {
+            let monkey = document.getElementById('#monkey');
+            monkey.addEventListener('hitstart', function(e) {
+                // console.log('Player has collided with ', e.detail.body.el);
+                score = document.getElementById("#label");
+                score.setAttribute('text',"value: collided!; color: #000000; font: mozillavr; letterSpacing: 1; align: center;");
+            });
+            }
+        })
 
         // <!-- GAME STATE -->
         AFRAME.registerComponent('game-state', {

@@ -102,8 +102,8 @@
                 label.setAttribute('text','value: SCORE ' + scoreData + '; color: red; font: mozillavr; letterSpacing: 1; align: center;');
                 label.setAttribute('position','0 1.7 0');
                 label.setAttribute('scale', '2.5 2.5 2.5');
-                scene.addEventListener('hitstart', function () {
-                    score.setAttribute('text','value: SCORE ' + ++scoreData);
+                sceneEl.addEventListener('hitstart', function () {
+                    score.setAttribute('text','value: SCORE ' + scoreData++);
                 });
                 sceneEl.appendChild(label);                
             }

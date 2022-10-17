@@ -68,13 +68,15 @@
     <!-- FRUIT -->
     <a-entity random-fruit></a-entity>
 
-    <a-entity game-state></a-entity>      
-    <a-entity 
+    <a-entity game-state></a-entity>
+    <a-entity score-board></a-entity>      
+      
+    <!-- <a-entity 
         id="score" 
         text="value: SCORE 0; color: red; font: mozillavr; letterSpacing: 1; align: center;" 
         position="0 1.7 0"
         event-set__hitstart="text: value: SCORE 1;">
-    </a-entity>
+    </a-entity> -->
 
     <!-- Quest Controllers -->
     <a-entity camera position="0 1.6 0" look-controls wasd-controls></a-entity>
@@ -90,12 +92,22 @@
     </a-entity>
 
     <script>
-        let scene = document.querySelector('a-scene');
-        scene.addEventListener('hitstart', 
-            function () {
-                let score = document.querySelector('#score');
-                score.setAttribute('text','value: SCORE 1');
-            });
+        // <!-- SCORE BOARD -->
+        AFRAME.registerComponent('score-board', {
+            init: function() {
+                let sceneEl = document.querySelector('a-scene');
+                score = document.createElement('a-entity');
+                scoreData = 0;
+                label.setAttribute('id', 'score');
+                label.setAttribute('text','value: SCORE ' + scoreData + '; color: red; font: mozillavr; letterSpacing: 1; align: center;');
+                label.setAttribute('position','0 1.7 0');
+                label.setAttribute('scale', '2.5 2.5 2.5');
+                scene.addEventListener('hitstart', function () {
+                    score.setAttribute('text','value: SCORE ' + ++scoreData);
+                });
+                sceneEl.appendChild(label);                
+            }
+        });
 
         // <!-- GAME STATE -->
         AFRAME.registerComponent('game-state', {

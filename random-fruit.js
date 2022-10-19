@@ -49,6 +49,9 @@ AFRAME.registerComponent('random-fruit', {
                 fruit[i].setAttribute('animation', ANIMATE_ROTATION);
                 fruit[i].setAttribute('position', INITIAL_POSITION);
                 fruit[i].setAttribute('animation__2', ANIMATE_POSITION);
+                fruit[i].setAttribute('aabb-collider', 'objects: .monkey');
+                fruit[i].setAttribute('play-sound-on-event', 'mode: toggle-stop; event: hitstart');
+                fruit[i].setAttribute('sound', 'src: #monkeysound');
 
                 // Select the fruit type
                 var randomFruit = randomFromInterval(1,4);

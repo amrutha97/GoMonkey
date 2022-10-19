@@ -1,4 +1,10 @@
 // <!-- GAME STATE -->
+const States = {
+	Start: 1,
+	Pause: 2,
+	Restart: 3,
+}
+
 AFRAME.registerComponent('game-state', {
     init: function() {
         let sceneEl = document.querySelector('a-scene');

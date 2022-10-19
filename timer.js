@@ -20,6 +20,7 @@ AFRAME.registerComponent('timer', {
                 setTimeout(onTimer, 1000);
             }
         }
+        // We want to make this pausable eventually: https://stackoverflow.com/questions/3969475/javascript-pause-settimeout. 
         // TODO: Only call this on click of start button and/or change of game state
         onTimer()
     }

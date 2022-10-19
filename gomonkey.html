@@ -84,13 +84,47 @@
     </a-entity>
     <a-entity 
         sphere-collider="objects: .monkey" 
-        super-hands hand-controls="hand: left">
+        super-hands hand-controls="hand: left"
+        >
     </a-entity>
     <a-entity 
         sphere-collider="objects: .monkey" 
-        super-hands hand-controls="hand: right">
+        super-hands hand-controls="hand: right"
+        >
     </a-entity>
-<script></script> 
+    <a-entity oculus-touch-controls="hand: left" update-game-state></a-entity>
+    <a-entity oculus-touch-controls="hand: right" update-game-state></a-entity>
+    <!-- <a-box 
+        color="#212121" 
+        position="0 2 2" 
+        scale="0.5 2 0.1" 
+        hoverable 
+        class="UIButton"
+        text="Start"
+        event-set__enter="_event: hover-start; color: #00AAFF" event-set__leave="_event: hover-end; color: #212121"
+        event-set__tarcol="_event: click; _target: #screen; color: #00AAFF">
+    </a-box> -->
+
+
+<script>
+AFRAME.registerComponent('update-game-state',{
+  init: function () {
+    let sceneEl = document.querySelector('a-scene');
+    sceneEl.addEventListener('abuttonchanged', this.startGame);
+    sceneEl.addEventListener('xbuttonchanged', this.pauseGame);
+  },
+  startGame: function (evt) {
+    let sky = document.querySelector('a-sky');
+    sky.setAttribute('color','#FF0000');
+  },
+
+  pauseGame: function (evt) {
+    let sky = document.querySelector('a-sky');
+    sky.setAttribute('color','#FFFF00');
+  }
+});
+
+</script> 
 </a-scene>
 </body>
 </html>

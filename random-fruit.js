@@ -50,7 +50,6 @@ AFRAME.registerComponent('random-fruit', {
                 fruit[i].setAttribute('position', INITIAL_POSITION);
                 fruit[i].setAttribute('animation__2', ANIMATE_POSITION);
                 fruit[i].setAttribute('aabb-collider', 'objects: .monkey');
-                fruit[i].setAttribute('play-sound-on-event', 'mode: toggle-stop; event: hitstart');
 
                 // Select the fruit type
                 var randomFruit = randomFromInterval(1,4);
@@ -58,21 +57,25 @@ AFRAME.registerComponent('random-fruit', {
                     fruit[i].setAttribute('gltf-model', '#strawberry');
                     fruit[i].setAttribute('scale', SCALE_1);
                     fruit[i].setAttribute('sound', 'src: #monkeysound');
+                    fruit[i].setAttribute('play-sound-on-event', 'mode: toggle-stop; event: hitstart');
                 } 
                 else if (randomFruit === Fruit.Orange) {
                     fruit[i].setAttribute('gltf-model', '#orange');
                     fruit[i].setAttribute('scale', SCALE_2);
                     fruit[i].setAttribute('sound', 'src: #monkeysound');
+                    fruit[i].setAttribute('play-sound-on-event', 'mode: toggle-stop; event: hitstart');
                 } 
-                if (randomFruit === Fruit.Banana) {
+                else if (randomFruit === Fruit.Banana) {
                     fruit[i].setAttribute('gltf-model', '#banana');
                     fruit[i].setAttribute('scale', SCALE_1);
                     fruit[i].setAttribute('sound', 'src: #monkeysound');
+                    fruit[i].setAttribute('play-sound-on-event', 'mode: toggle-stop; event: hitstart');
                 } 
-                if (randomFruit === Fruit.Jellyfish) {
+                else if (randomFruit === Fruit.Jellyfish) {
                     fruit[i].setAttribute('gltf-model', '#jellyfish');
                     fruit[i].setAttribute('scale', SCALE_3);
                     fruit[i].setAttribute('sound', 'src: #jellyfishsound');
+                    fruit[i].setAttribute('play-sound-on-event', 'mode: toggle-stop; event: hitstart');
                 }
                 // Randomize the times
                 setTimeout(function() {

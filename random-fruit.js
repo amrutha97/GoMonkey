@@ -51,21 +51,23 @@ AFRAME.registerComponent('random-fruit', {
                 fruit[i].setAttribute('animation__2', ANIMATE_POSITION);
                 fruit[i].setAttribute('aabb-collider', 'objects: .monkey');
                 fruit[i].setAttribute('play-sound-on-event', 'mode: toggle-stop; event: hitstart');
-                fruit[i].setAttribute('sound', 'src: #monkeysound');
 
                 // Select the fruit type
                 var randomFruit = randomFromInterval(1,4);
                 if (randomFruit === Fruit.Strawberry) {
                     fruit[i].setAttribute('gltf-model', '#strawberry');
                     fruit[i].setAttribute('scale', SCALE_1);
+                    fruit[i].setAttribute('sound', 'src: #monkeysound');
                 } 
                 else if (randomFruit === Fruit.Orange) {
                     fruit[i].setAttribute('gltf-model', '#orange');
                     fruit[i].setAttribute('scale', SCALE_2);
+                    fruit[i].setAttribute('sound', 'src: #monkeysound');
                 } 
                 if (randomFruit === Fruit.Banana) {
                     fruit[i].setAttribute('gltf-model', '#banana');
                     fruit[i].setAttribute('scale', SCALE_1);
+                    fruit[i].setAttribute('sound', 'src: #monkeysound');
                 } 
                 if (randomFruit === Fruit.Jellyfish) {
                     fruit[i].setAttribute('gltf-model', '#jellyfish');

@@ -20,7 +20,10 @@
 </head>
   <body>
 
-<a-scene environment="preset: forest; shadow: true shadowSize: 10; lightPosition: -1 1 1" physics>
+<a-scene 
+    environment="preset: forest; shadow: true shadowSize: 10; lightPosition: -1 1 1" 
+    physics
+>
     <a-assets>
         <!-- GLTFs -->
         <a-asset-item id="monkey" src="models/monkey.glb"></a-asset-item>
@@ -28,14 +31,20 @@
         <a-asset-item id="banana" src="models/banana.glb"></a-asset-item>
         <a-asset-item id="orange" src="models/orange.glb"></a-asset-item>
         <a-asset-item id="jellyfish" src="models/jellyfish.glb"></a-asset-item>
-        <audio id="monkeysound" src="models/monkeySound.wav"></audio>
-        <audio id="jellyfishsound" src="models/jellyfishSound.wav"></audio>
+        <!-- Audio -->
+        <audio id="monkeysound" src="assets/monkeySound.wav"></audio>
+        <audio id="jellyfishsound" src="assets/jellyfishSound.wav"></audio>
         <!-- Mixins -->
         <a-mixin id="dynamic" hoverable grabbable stretchable draggable dropppable></a-mixin>
     </a-assets>
 
+    <!-- <a-entity light="type: point; color: #f4f4f4; intensity: 0.4; distance: 0" position="0 2 0"></a-entity> -->
+    <!-- <a-entity rotation="" class="environmentGround environment" visible="" scale="" shadow=""></a-entity> -->
+
     <!-- GAME STATE -->
     <a-entity game-state></a-entity>
+    <!-- <a-link cursor="rayOrigin: mouse"
+    href="index.html" title="Back to Home" image="#thumbnail" position="0 0 -1" scale=".2 .2 .2"></a-link> -->
 
     <!-- MONKEY -->
     <a-entity 
@@ -70,7 +79,6 @@
    
     <!-- Quest Controllers -->
     <a-entity camera position="0 1 2" look-controls wasd-controls>
-        <a-entity game-state></a-entity>
         <a-entity timer></a-entity>      
         <a-entity score-board></a-entity>   
     </a-entity>

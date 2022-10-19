@@ -16,7 +16,7 @@ function randomRotation() {
 
 AFRAME.registerComponent('random-fruit', {
     init: function() {
-        const NUM_FRUIT = 30;
+        const NUM_FRUIT = 50;
         const Y_INITIAL = 10;
         const Y_FINAL = 0;
 
@@ -37,8 +37,8 @@ AFRAME.registerComponent('random-fruit', {
         // Make fruit
         for (let i = 0; i < NUM_FRUIT; i++) {
             // Randomize Position and Rotation
-            const INITIAL_POSITION = randomFromInterval(-5,5) + ' ' + Y_INITIAL + ' ' + randomFromInterval(-5,5);
-            const ANIMATE_POSITION = PROPERTY_POSITION + randomFromInterval(-5,5) + ' ' + Y_FINAL + ' ' + randomFromInterval(-5,5) + '; dur: ' + randomFromInterval(20000,30000) + LOOP;
+            const INITIAL_POSITION = randomFromInterval(-3,3) + ' ' + Y_INITIAL + ' ' + randomFromInterval(-3,3);
+            const ANIMATE_POSITION = PROPERTY_POSITION + randomFromInterval(-3,3) + ' ' + Y_FINAL + ' ' + randomFromInterval(-3,3) + '; dur: ' + randomFromInterval(10000,20000) + LOOP;
             const ANIMATE_ROTATION = PROPERTY_ROTATION + randomRotation() + ' ' + randomRotation() + ' ' + randomRotation() + '; dur: 100000' + LOOP;
 
             // Set Generic Attributes

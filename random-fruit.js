@@ -50,6 +50,7 @@ AFRAME.registerComponent('random-fruit', {
                 fruit[i].setAttribute('position', INITIAL_POSITION);
                 fruit[i].setAttribute('animation__2', ANIMATE_POSITION);
                 fruit[i].setAttribute('aabb-collider', 'objects: .monkey');
+                fruit[i].setAttribute('collision-filter','group: fruit; collidesWith: hands, .monkey, ground')
 
                 // Select the fruit type
                 var randomFruit = randomFromInterval(1,4);

@@ -38,7 +38,9 @@
         <!-- Mixins -->
         <a-mixin id="controller"
         sphere-collider="objects: .monkey" 
-        super-hands>
+        super-hands
+        physics-collider
+        >
         </a-mixin>
     </a-assets>
 
@@ -64,6 +66,7 @@
         depth="100" 
         visible="true" 
         color="#006600"
+        collision-filter="group: ground; collidesWith: .fruit; collisionForces: true"></a-box>
         >
     </a-box>
 
@@ -96,17 +99,8 @@
         super-hands 
         >
     </a-entity> -->
-    <a-entity oculus-touch-controls="hand: left"
-    mixin="controller"
-    id="left-hand"  
-    >
-    </a-entity>
-
-    <a-entity oculus-touch-controls="hand: right"
-    mixin="controller"
-    id="right-hand"  
-    >
-    </a-entity>
+    <a-entity id="left-hand" super-hands hand-controls="hand: left" mixin="controller" x-button-listener>
+    <a-entity id="right-hand" super-hands hand-controls="hand: right" mixin="controller" a-button-listener>
 </a-scene>
 </body>
 </html>

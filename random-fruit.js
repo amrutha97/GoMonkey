@@ -36,42 +36,43 @@ AFRAME.registerComponent('random-fruit', {
 
         // Make fruit
         for (let i = 0; i < NUM_FRUIT; i++) {
-            // Randomize Position and Rotation
-            const INITIAL_POSITION = randomFromInterval(-3,3) + ' ' + Y_INITIAL + ' ' + randomFromInterval(-3,3);
-            const ANIMATE_POSITION = PROPERTY_POSITION + randomFromInterval(-3,3) + ' ' + Y_FINAL + ' ' + randomFromInterval(-3,3) + '; dur: ' + randomFromInterval(5000,20000) + LOOP;
-            const ANIMATE_ROTATION = PROPERTY_ROTATION + randomRotation() + ' ' + randomRotation() + ' ' + randomRotation() + '; dur: 100000' + LOOP;
-
-            // Set Generic Attributes
-            fruit[i] = document.createElement('a-entity');
-            fruit[i].setAttribute('class', CLASS);
-            fruit[i].setAttribute('mixin', MIXIN);
-            fruit[i].setAttribute('animation', ANIMATE_ROTATION);
-            fruit[i].setAttribute('position', INITIAL_POSITION);
-            fruit[i].setAttribute('animation__2', ANIMATE_POSITION);
-
-            // Select the fruit type
-            var randomFruit = randomFromInterval(1,4);
-            if (randomFruit === Fruit.Strawberry) {
-                fruit[i].setAttribute('gltf-model', '#strawberry');
-                fruit[i].setAttribute('scale', SCALE_1);
-            } 
-            else if (randomFruit === Fruit.Orange) {
-                fruit[i].setAttribute('gltf-model', '#orange');
-                fruit[i].setAttribute('scale', SCALE_2);
-            } 
-            if (randomFruit === Fruit.Banana) {
-                fruit[i].setAttribute('gltf-model', '#banana');
-                fruit[i].setAttribute('scale', SCALE_1);
-            } 
-            if (randomFruit === Fruit.Jellyfish) {
-                fruit[i].setAttribute('gltf-model', '#jellyfish');
-                fruit[i].setAttribute('scale', SCALE_3);
-            }
-
-            // Randomize the times
             setTimeout(function() {
-                sceneEl.appendChild(fruit[i]);
-            }, Math.random() * 360);
+                // Randomize Position and Rotation
+                const INITIAL_POSITION = randomFromInterval(-3,3) + ' ' + Y_INITIAL + ' ' + randomFromInterval(-3,3);
+                const ANIMATE_POSITION = PROPERTY_POSITION + randomFromInterval(-3,3) + ' ' + Y_FINAL + ' ' + randomFromInterval(-3,3) + '; dur: ' + randomFromInterval(5000,20000) + LOOP;
+                const ANIMATE_ROTATION = PROPERTY_ROTATION + randomRotation() + ' ' + randomRotation() + ' ' + randomRotation() + '; dur: ' + randomFromInterval(5000,20000) + LOOP;
+
+                // Set Generic Attributes
+                fruit[i] = document.createElement('a-entity');
+                fruit[i].setAttribute('class', CLASS);
+                fruit[i].setAttribute('mixin', MIXIN);
+                fruit[i].setAttribute('animation', ANIMATE_ROTATION);
+                fruit[i].setAttribute('position', INITIAL_POSITION);
+                fruit[i].setAttribute('animation__2', ANIMATE_POSITION);
+
+                // Select the fruit type
+                var randomFruit = randomFromInterval(1,4);
+                if (randomFruit === Fruit.Strawberry) {
+                    fruit[i].setAttribute('gltf-model', '#strawberry');
+                    fruit[i].setAttribute('scale', SCALE_1);
+                } 
+                else if (randomFruit === Fruit.Orange) {
+                    fruit[i].setAttribute('gltf-model', '#orange');
+                    fruit[i].setAttribute('scale', SCALE_2);
+                } 
+                if (randomFruit === Fruit.Banana) {
+                    fruit[i].setAttribute('gltf-model', '#banana');
+                    fruit[i].setAttribute('scale', SCALE_1);
+                } 
+                if (randomFruit === Fruit.Jellyfish) {
+                    fruit[i].setAttribute('gltf-model', '#jellyfish');
+                    fruit[i].setAttribute('scale', SCALE_3);
+                }
+                // Randomize the times
+                setTimeout(function() {
+                    sceneEl.appendChild(fruit[i]);
+                }, randomRotation());
+            }, randomRotation());
         }
     }
 });

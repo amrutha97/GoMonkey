@@ -22,7 +22,7 @@ AFRAME.registerComponent('random-fruit', {
 
         const SCALE_1 = '0.001 0.001 0.001';
         const SCALE_2 = '0.003 0.003 0.003';
-        const SCALE_3 = '0.05 0.05 0.05';
+        const SCALE_3 = '0.04 0.04 0.04';
 
         const MIXIN = 'dynamic';
         const CLASS = 'fruit';
@@ -38,7 +38,7 @@ AFRAME.registerComponent('random-fruit', {
         for (let i = 0; i < NUM_FRUIT; i++) {
             // Randomize Position and Rotation
             const INITIAL_POSITION = randomFromInterval(-3,3) + ' ' + Y_INITIAL + ' ' + randomFromInterval(-3,3);
-            const ANIMATE_POSITION = PROPERTY_POSITION + randomFromInterval(-3,3) + ' ' + Y_FINAL + ' ' + randomFromInterval(-3,3) + '; dur: ' + randomFromInterval(10000,20000) + LOOP;
+            const ANIMATE_POSITION = PROPERTY_POSITION + randomFromInterval(-3,3) + ' ' + Y_FINAL + ' ' + randomFromInterval(-3,3) + '; dur: ' + randomFromInterval(5000,20000) + LOOP;
             const ANIMATE_ROTATION = PROPERTY_ROTATION + randomRotation() + ' ' + randomRotation() + ' ' + randomRotation() + '; dur: 100000' + LOOP;
 
             // Set Generic Attributes

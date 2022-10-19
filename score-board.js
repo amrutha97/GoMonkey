@@ -8,12 +8,12 @@ AFRAME.registerComponent('score-board', {
         score.setAttribute('text',"value: SCORE " + scoreData + "; color: red; font: mozillavr; letterSpacing: 1; align: center;");
         score.setAttribute('position','0 1.7 0');
         score.setAttribute('scale', '2.5 2.5 2.5');
-        // sceneEl.addEventListener('hitstart', 
-        //     function () {
-        //         scoreData += 1;
-        //         score.setAttribute('text','value: SCORE ' + scoreData + '; color: red; font: mozillavr; letterSpacing: 1; align: center;');
-        //     }
-        // );
+        sceneEl.addEventListener('hitstart', 
+            function () {
+                scoreData += 1;
+                score.setAttribute('text','value: SCORE ' + scoreData + '; color: red; font: mozillavr; letterSpacing: 1; align: center;');
+            }
+        );
         sceneEl.appendChild(score);                
     }
 });

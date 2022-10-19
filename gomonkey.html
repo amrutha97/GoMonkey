@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.js"></script>
     <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-haptics-component/dist/aframe-haptics-component.min.js"></script>
     <script src="https://unpkg.com/aframe-play-sound-on-event@1.0.2/dist/aframe-play-sound-on-event.min.js"></script> 
     <script src="https://unpkg.com/aframe-play-sound-on-event@1.0.2/dist/aframe-play-sound-on-event.min.js"></script> 
     <script src="score-board.js"></script> 
@@ -79,13 +78,11 @@
     </a-entity>
     <a-entity 
         sphere-collider="objects: .monkey" 
-        super-hands hand-controls="hand: left" 
-        haptics="events: hitstart; dur: 1000; force: 0.5">
+        super-hands hand-controls="hand: left">
     </a-entity>
     <a-entity 
         sphere-collider="objects: .monkey" 
-        super-hands hand-controls="hand: right" 
-        haptics="events: hitstart; dur: 1000; force: 0.5">
+        super-hands hand-controls="hand: right">
     </a-entity>
 <script></script> 
 </a-scene>

@@ -76,12 +76,6 @@ AFRAME.registerComponent('random-fruit', {
                     fruit[i].setAttribute('scale', SCALE_3);
                     fruit[i].setAttribute('sound', 'src: #jellyfishsound');
                     fruit[i].setAttribute('play-sound-on-event', 'mode: toggle-stop; event: hitstart');
-                    fruit[i].addEventListener('histart', 
-                        function () {
-                            let sky = document.querySelector('a-sky');
-                            sky.setAttribute('color','#6796f5');
-                        }
-                    );
                 }
                 // Randomize the times
                 setTimeout(function() {

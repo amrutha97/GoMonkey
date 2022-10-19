@@ -12,12 +12,12 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.js"></script>
     <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
     <script src="https://unpkg.com/aframe-play-sound-on-event@1.0.2/dist/aframe-play-sound-on-event.min.js"></script> 
-    <script src="https://unpkg.com/aframe-play-sound-on-event@1.0.2/dist/aframe-play-sound-on-event.min.js"></script> 
     <script src="score-board.js"></script> 
     <script src="game-state.js"></script>
     <script src="random-fruit.js"></script> 
     <script src="timer.js"></script> 
     <script src="button.js"></script> 
+    <script src="listener.js"></script>     
 </head>
   <body>
 
@@ -36,11 +36,11 @@
         <audio id="monkeysound" src="assets/monkeySound.wav"></audio>
         <audio id="jellyfishsound" src="assets/jellyfishSound.wav"></audio>
         <!-- Mixins -->
-        <a-mixin id="dynamic" hoverable grabbable stretchable draggable dropppable></a-mixin>
+        <a-mixin id="controller"
+        sphere-collider="objects: .monkey" 
+        super-hands>
+        </a-mixin>
     </a-assets>
-
-    <!-- GAME STATE -->
-    <a-entity game-state></a-entity>
 
     <!-- MONKEY -->
     <a-entity 
@@ -70,50 +70,43 @@
     <!-- SKY -->
     <a-sky color="#6796f5"></a-sky>
    
-    <!-- Fruit / Game state / Score board -->
+    <!-- FRUIT -->
     <a-entity random-fruit></a-entity>
    
-    <!-- Quest Controllers -->
+    <!-- MENU -->
     <a-entity camera position="0 1 2" look-controls wasd-controls>
+        <a-entity game-state></a-entity>
         <a-entity timer></a-entity>      
         <a-entity score-board></a-entity>   
         <a-entity button></a-entity>   
-
     </a-entity>
-    <a-entity 
+
+    <!-- QUEST -->
+    <!-- <a-entity 
+        id="left-hand"
         sphere-collider="objects: .monkey" 
         hand-controls="hand: left"
         super-hands 
-        raycaster="objects:.button"
         >
     </a-entity>
     <a-entity 
+        id="right-hand"  
         sphere-collider="objects: .monkey" 
         hand-controls="hand: right"
         super-hands 
-        raycaster="objects:.button"
         >
+    </a-entity> -->
+    <a-entity oculus-touch-controls="hand: left"
+    mixin="controller"
+    id="left-hand"  
+    >
     </a-entity>
 
-<script>
-// AFRAME.registerComponent('update-game-state',{
-//   init: function () {
-//     let sceneEl = document.querySelector('a-scene');
-//     sceneEl.addEventListener('abuttonchanged', this.startGame);
-//     sceneEl.addEventListener('xbuttonchanged', this.pauseGame);
-//   },
-//   startGame: function (evt) {
-//     let sky = document.querySelector('a-sky');
-//     sky.setAttribute('color','#FF0000');
-//   },
-
-//   pauseGame: function (evt) {
-//     let sky = document.querySelector('a-sky');
-//     sky.setAttribute('color','#FFFF00');
-//   }
-// });
-
-</script> 
+    <a-entity oculus-touch-controls="hand: right"
+    mixin="controller"
+    id="right-hand"  
+    >
+    </a-entity>
 </a-scene>
 </body>
 </html>

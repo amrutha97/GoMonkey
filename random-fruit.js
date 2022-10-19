@@ -35,7 +35,7 @@ AFRAME.registerComponent('random-fruit', {
             // Randomize Position and Rotation
             const INITIAL_POSITION = randomFromInterval(-5,5) + ' ' + Y_INITIAL + ' ' + randomFromInterval(-5,5);
             const ANIMATE_POSITION = PROPERTY_POSITION + randomFromInterval(-5,5) + ' ' + Y_FINAL + ' ' + randomFromInterval(-5,5) + '; dur: ' + randomFromInterval(20000,30000) + LOOP;
-            const ANIMATE_ROTATION = PROPERTY_ROTATION + randomFromInterval(0,360) + ' ' + randomFromInterval(300,360) + ' ' + randomFromInterval(300,360) + ' dur: 10000' + LOOP;
+            const ANIMATE_ROTATION = PROPERTY_ROTATION + randomFromInterval(0,360) + ' ' + randomFromInterval(0,360) + ' ' + randomFromInterval(0,360) + ' dur: 10000' + LOOP;
 
             // Set Generic Attributes
             fruit[i] = document.createElement('a-entity');

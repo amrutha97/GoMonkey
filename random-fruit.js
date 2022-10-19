@@ -10,6 +10,10 @@ function randomFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+function randomRotation() {
+    return Math.random() * 360;
+}
+
 AFRAME.registerComponent('random-fruit', {
     init: function() {
         const NUM_FRUIT = 30;
@@ -35,7 +39,7 @@ AFRAME.registerComponent('random-fruit', {
             // Randomize Position and Rotation
             const INITIAL_POSITION = randomFromInterval(-5,5) + ' ' + Y_INITIAL + ' ' + randomFromInterval(-5,5);
             const ANIMATE_POSITION = PROPERTY_POSITION + randomFromInterval(-5,5) + ' ' + Y_FINAL + ' ' + randomFromInterval(-5,5) + '; dur: ' + randomFromInterval(20000,30000) + LOOP;
-            const ANIMATE_ROTATION = PROPERTY_ROTATION + randomFromInterval(0,360) + ' ' + randomFromInterval(0,360) + ' ' + randomFromInterval(0,360) + ' dur: 10000' + LOOP;
+            const ANIMATE_ROTATION = PROPERTY_ROTATION + randomRotation() + ' ' + randomRotation() + ' ' + randomRotation() + '; dur: 100000' + LOOP;
 
             // Set Generic Attributes
             fruit[i] = document.createElement('a-entity');

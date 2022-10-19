@@ -70,6 +70,7 @@ AFRAME.registerComponent('random-fruit', {
                 if (randomFruit === Fruit.Jellyfish) {
                     fruit[i].setAttribute('gltf-model', '#jellyfish');
                     fruit[i].setAttribute('scale', SCALE_3);
+                    fruit[i].setAttribute('sound', 'src: #jellyfishsound');
                 }
                 // Randomize the times
                 setTimeout(function() {

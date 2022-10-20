@@ -93,31 +93,28 @@
         super-hands 
         >
     </a-entity> -->
-    <a-entity id="left-hand" sphere-collider="objects: .monkey" super-hands hand-controls="hand: left" mixin="controller" x-button-listener>
-    <a-entity id="right-hand" sphere-collider="objects: .monkey" super-hands hand-controls="hand: right" mixin="controller" a-button-listener>
+    <a-entity id="left-hand" sphere-collider="objects: .monkey" super-hands oculus-touch-controls="hand: right" mixin="controller" x-button-listener>
+    <!-- <a-entity id="right-hand" sphere-collider="objects: .monkey" super-hands hand-controls="hand: right" mixin="controller" a-button-listener> -->
 </a-scene>
 <script>
 AFRAME.registerComponent('x-button-listener', {
     init: function () {
-        let sceneEl = document.querySelector('a-scene');
-        sceneEl.addEventListener('xbuttondown', function (evt) {
+        let leftHand = document.querySelector('left-hand');
+        leftHand.addEventListener('xbuttondown', function (evt) {
             let button = document.getElementById('#button');
             button.setAttribute('text',"value: X; width: 2; color: #000000; font: mozillavr; align: center;");
         });
     },
 });
 
-AFRAME.registerComponent('a-button-listener', {
-    init: function () {
-        let sceneEl = document.querySelector('a-scene');
-        sceneEl.addEventListener('abuttondown', function (evt) {
-            let button = document.getElementById('#button');
-            button.setAttribute('text',"value: A; width: 2; color: #000000; font: mozillavr; align: center;");        });
-    }
-});
-
-// document.querySelector("#left-hand").setAttribute('x-button-listener', '');
-// document.querySelector("#right-hand").setAttribute('a-button-listener', '');
+// AFRAME.registerComponent('a-button-listener', {
+//     init: function () {
+//         let sceneEl = document.querySelector('a-scene');
+//         sceneEl.addEventListener('abuttondown', function (evt) {
+//             let button = document.getElementById('#button');
+//             button.setAttribute('text',"value: A; width: 2; color: #000000; font: mozillavr; align: center;");        });
+//     }
+// });
 
 </script>
 </body>
